@@ -7,7 +7,7 @@ def load_config(json_file="./green_data/consumption_constans.json"):
     return config
 
 def energy_consumption(amount: float):
-    # przeliczyć ile kwh to ile kg co2
+    # przeliczyć ile KWh to ile kg co2
     return amount * load_config()['energy_factor']
 
 
@@ -47,9 +47,9 @@ def diet_consumption(diet_type: str):
     # ile co2 produkuje spozywanie danego rodzaju diety
     return load_config()['diet_factors'].get(diet_type, 0)
 
-def fasion_consumption(new_clothes_freq: str):
-    # ile co2 produkuje kupowanie odziezy z dana czestotliwoscia
-    return load_config()['fasion_factors'].get(new_clothes_freq.replace(" ", "_"), 0)
+def fasion_consumption(new_clothes_amount: float):
+    # ile co2 produkuje kupowanie danej ilosci odziezy
+    return new_clothes_amount * load_config()['clothes_factor']
 
 def plane_travel_consumption(plane_trav_freq: float):
     # ile co2 produkuje podrozowanie samolotem z dana czestotliwoscia (1000km * 2)
@@ -85,7 +85,7 @@ def main():
     print(private_transport_consumption(200))
     print(every_day_transport_consumption('car'))
     print(diet_consumption('vegetarian'))
-    print(fasion_consumption('1 per week'))
+    print(f'fasion_consumption: {fasion_consumption(3)}')
     print(plane_travel_consumption(2))
     print(go_out_consumption('1 per week'))
     print(disposable_packing(True))

@@ -29,13 +29,7 @@
         "meat": 3.1,
         "Mediterranean": 3.1
     },
-    "fasion_factors": {
-        "1_per_week": 0.9,
-        "2_times_per_week": 3.1,
-        "1_every_two_weeks": 3.1,
-        "1_per_month": 3.1,
-        "less_often": 3.1
-    },
+    "clothes_factor": 34.9,
     "plane_travel_factor": 90,
     "go_out_factors": {
         "1_per_week": 0.9,
