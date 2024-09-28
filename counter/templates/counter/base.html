@@ -11,8 +11,13 @@
         <div class="container mx-auto flex justify-between items-center">
             <a href="{% url 'home' %}" class="text-white text-2xl font-bold">CO2UNTER</a>
             <div>
-                <a href="#" class="text-white hover:text-green-200 px-3 py-2">Register</a>
-                <a href="#" class="text-white hover:text-green-200 px-3 py-2">Login</a>
+                {% if user.is_authenticated %}
+                    <span class="text-white px-3 py-2">Welcome, {{ user.username }}</span>
+                    <a href="#" class="text-white hover:text-green-200 px-3 py-2">Logout</a>
+                {% else %}
+                    <a href="{% url 'register' %}" class="text-white hover:text-green-200 px-3 py-2">Register</a>
+                    <a href="{% url 'login' %}" class="text-white hover:text-green-200 px-3 py-2">Login</a>
+                {% endif %}
             </div>
         </div>
     </nav>
