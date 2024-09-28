@@ -5,11 +5,11 @@
         "segregation": 340,
         "non_segregation": 204
     },
-    "heat_amouns": {
+    "heat_amount": {
         "coal": 94.73,
         "gas": 63.1,
-        "oil_furnace": 63.1,
-        "district_heating": 94.81
+        "oil": 63.1,
+        "district": 94.81
     },
     "air_conditioning": {
         "enabled": 114,
@@ -21,21 +21,22 @@
         "bus": 0.003,
         "tram": 0.0053,
         "bike": 0,
-        "foot": 0
+        "walk": 0
     },
     "diet_factors": {
         "vegetarian": 124.8,
         "vegan": 108,
         "meat": 300,
-        "Mediterranean": 144
+        "mediterranean": 144
     },
     "clothes_factor": 55,
     "plane_travel_factor": 20,
     "go_out_factors": {
         "1_per_week": 14.16,
-        "2_times_per_week": 28.38,
-        "1_every_two_weeks": 7.08,
-        "1_per_month": 3.54
+        "2_per_week": 28.38,
+        "1_per_2_weeks": 7.08,
+        "1_per_month": 3.54,
+        "less_often": 1.77
     },
     "disposable_packing": {
         "enabled": 31.6,
@@ -47,8 +48,9 @@
     },
     "mass_event_freq_factors": {
         "1_per_week": 4,
-        "2_times_per_week": 8,
-        "1_every_two_weeks": 2,
-        "1_per_month": 1
+        "2_per_week": 8,
+        "1_per_2_weeks": 2,
+        "1_per_month": 1,
+        "less_often": 0.5
     }
 }
