@@ -12,7 +12,7 @@ class CO2Consumption(models.Model):
         ('bus', 'Autobus'),
         ('car', 'Samochód'),
         ('tram', 'Tramwaj'),
-        ('walk', 'Chodzić'),
+        ('walk', 'Pieszo'),
         ('bike', 'Rower'),
     ]
     DIET_CHOICES = [
@@ -80,7 +80,7 @@ class CO2Consumption(models.Model):
     )
     air_travel_frequency = models.IntegerField(
         help_text="Ile razy w roku podróżujesz samolotem?",
-        verbose_name="Częstotliwość podróży lotniczych"
+        verbose_name="Częstotliwość podróży lotniczych (rocznie)"
     )
     going_out_frequency = models.CharField(
         max_length=15,

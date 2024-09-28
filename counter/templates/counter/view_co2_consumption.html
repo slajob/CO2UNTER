@@ -4,96 +4,107 @@
 <div class="column is-three-quarters is-offset-one-quarter">
     <h1 class="title">Twoje dane dotyczące zużycia CO2</h1>
     {% if consumption %}
-        <table class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Kategoria</th>
-                    <th>Twoje dane</th>
-                    <th>Twoja emisja CO2 na miesiąc</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>Miesięczne zużycie energii</th>
-                    <td>{{ consumption.energy_consumption }} kWh</td>
-                    <td>{{ energy_co2 }} kg CO2</td>
-                </tr>
-                <tr>
-                    <th>Miesięczne zużycie wody</th>
-                    <td>{{ consumption.water_consumption }} m³</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Segregacja odpadów</th>
-                    <td>{% if consumption.waste_segregation %}Yes{% else %}No{% endif %}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Rodzaj ogrzewania gospodarstwa domowego</th>
-                    <td>{{ consumption.get_heating_method_display }}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Użycie klimatyzacji</th>
-                    <td>{% if consumption.air_conditioning %}Yes{% else %}No{% endif %}</td>
-                <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Zużycie paliwa samochodu na L/100km</th>
-                    <td>{{ consumption.car_fuel_consumption }} L</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Sposób codziennego podróżowania</th>
-                    <td>{{ consumption.get_everyday_travel_display }}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Dzienny dystans podróży</th>
-                    <td>{{ consumption.daily_travel_distance }} km</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Dieta</th>
-                    <td>{{ consumption.get_diet_display }}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Ilość kupowanych ubrań miesięcznie</th>
-                    <td>{{ consumption.get_clothes_shopping_frequency_display }}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Twoje podróże lotnicze (rocznie)</th>
-                    <td>{{ consumption.air_travel_frequency }}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Częstotliwość wyjścia na miasto</th>
-                    <td>{{ consumption.get_going_out_frequency_display }}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Korzystanie z jednorazowych opakowań</th>
-                    <td>{% if consumption.disposable_packaging %}Yes{% else %}No{% endif %}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Preferencje dotyczące wydarzeń masowych</th>
-                    <td>{{ consumption.get_mass_event_preference_display }}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-                <tr>
-                    <th>Częstotliwość uczestnictwa w wydarzeniach masowych</th>
-                    <td>{{ consumption.get_mass_event_frequency_display }}</td>
-                    <td>INSERT HERE</td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="{% url 'add_co2_consumption' %}" class="button is-primary">Update Data</a>
+    <table class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th>Kategoria</th>
+                <th>Twoje dane</th>
+                <th>Twoja emisja CO2 na miesiąc</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Miesięczne zużycie energii</th>
+                <td>{{ consumption.energy_consumption }} kWh</td>
+                <td>{{ energy_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Miesięczne zużycie wody</th>
+                <td>{{ consumption.water_consumption }} m³</td>
+                <td>{{ water_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Segregacja odpadów</th>
+                <td>{% if consumption.waste_segregation %}Yes{% else %}No{% endif %}</td>
+                <td>{{ waste_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Rodzaj ogrzewania gospodarstwa domowego</th>
+                <td>{{ consumption.get_heating_method_display }}</td>
+                <td>{{ heating_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Użycie klimatyzacji</th>
+                <td>{% if consumption.air_conditioning %}Yes{% else %}No{% endif %}</td>
+                <td>{{ air_conditioning_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Sposób codziennego podróżowania</th>
+                <td>{{ consumption.get_everyday_travel_display }}</td>
+                <td></td>
+            </tr>
+            {% if consumption.get_everyday_travel_display == "Samochód" %}
+            <tr>
+              <th>Zużycie paliwa samochodu</th>
+              <td>{{ consumption.car_fuel_consumption }} l/100km</td>
+              <td></td>
+            </tr>
+            {% endif %}
+
+            {% if consumption.get_everyday_travel_display == "Samochód" %}
+            <tr>
+                <th>Dzienny dystans podróży</th>
+                <td>{{ consumption.daily_travel_distance }} km</td>
+                <td>{{ private_transport_co2 }} kg CO2</td>
+            </tr>
+            {% else %}
+            <tr>
+                <th>Dzienny dystans podróży</th>
+                <td>{{ consumption.daily_travel_distance }} km</td>
+                <td>{{ everyday_travel_co2 }} kg CO2</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Dieta</th>
+                <td>{{ consumption.get_diet_display }}</td>
+                <td>{{ diet_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Ilość kupowanych ubrań miesięcznie</th>
+                <td>{{ consumption.get_clothes_shopping_frequency_display }}</td>
+                <td>{{ fashion_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Twoje podróże lotnicze (rocznie)</th>
+                <td>{{ consumption.air_travel_frequency }}</td>
+                <td>{{ plane_travel_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Częstotliwość wyjścia na miasto</th>
+                <td>{{ consumption.get_going_out_frequency_display }}</td>
+                <td>{{ go_out_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Korzystanie z jednorazowych opakowań</th>
+                <td>{% if consumption.disposable_packaging %}Yes{% else %}No{% endif %}</td>
+                <td>{{ disposable_packing_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Preferencje dotyczące wydarzeń masowych</th>
+                <td>{{ consumption.get_mass_event_preference_display }}</td>
+                <td>{{ mass_event_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Częstotliwość uczestnictwa w wydarzeniach masowych</th>
+                <td>{{ consumption.get_mass_event_frequency_display }}</td>
+                <td>{{ mass_event_freq_co2 }} kg CO2</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'add_co2_consumption' %}" class="button is-primary">Update Data</a>
     {% else %}
-        <p>You haven't added any CO2 consumption data yet.</p>
-        <a href="{% url 'add_co2_consumption' %}" class="button is-primary">Add Data</a>
+    <p>You haven't added any CO2 consumption data yet.</p>
+    <a href="{% url 'add_co2_consumption' %}" class="button is-primary">Add Data</a>
     {% endif %}
 </div>
 {% endblock %}

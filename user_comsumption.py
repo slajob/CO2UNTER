@@ -26,7 +26,7 @@ def waste_consumption(segregation: bool):
 
 def house_heat_consumption(heat_type: str):
     # ile co2 produkuje dany typ ogrzewania
-    return load_config()['heat_amouns'].get(heat_type, 0)
+    return load_config()['heat_amount'].get(heat_type, 0)
 
 def air_conditioning_consumption(air_conditioning: bool):
     # ile co2 produkuje uzywanie klimatyzacji
@@ -35,9 +35,9 @@ def air_conditioning_consumption(air_conditioning: bool):
     else:
         return load_config()['air_conditioning']['disabled']
 
-def private_transport_consumption(fuel_use: float):
+def private_transport_consumption():
     # przeliczyć ile kg co2 produkuje dane zuzycie paliwa na 100km
-    return fuel_use * load_config()['fuel_use_factor']
+    return load_config()['fuel_use_factor']
 
 def every_day_transport_consumption(transport_type: str):
     # mnoznik rodzaju transportu
@@ -49,7 +49,7 @@ def diet_consumption(diet_type: str):
 
 def fasion_consumption(new_clothes_freq: str):
     # ile co2 produkuje kupowanie odziezy z dana czestotliwoscia
-    return load_config()['fasion_factors'].get(new_clothes_freq.replace(" ", "_"), 0)
+    return load_config()['fasion_factors'].get(new_clothes_freq, 0)
 
 def plane_travel_consumption(plane_trav_freq: float):
     # ile co2 produkuje podrozowanie samolotem z dana czestotliwoscia (1000km * 2)
@@ -57,7 +57,7 @@ def plane_travel_consumption(plane_trav_freq: float):
 
 def go_out_consumption(go_out_freq: str):
     # ile co2 produkuje wychodzneie na miasto z dana czestotliwoscia
-    return load_config()['go_out_factors'].get(go_out_freq.replace(" ", "_"), 0)
+    return load_config()['go_out_factors'].get(go_out_freq, 0)
 
 def disposable_packing(disposable: bool):
     # ile co2 produkuje wykorzystywanie jednorazowych opakowan
@@ -72,7 +72,7 @@ def mass_events_consumption(mass_event: str):
 
 def mass_events_freq_consumption(mass_event_freq: str):
     # ile co2 produkuje chodznie na imprezy masowe z dana czestotliwoscia
-    return load_config()['mass_event_freq_factors'].get(mass_event_freq.replace(" ", "_"), 0)
+    return load_config()['mass_event_freq_factors'].get(mass_event_freq, 0)
 
 
 def main():
