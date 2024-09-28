@@ -1,1 +1,4 @@
-Django~=5.1.1
+Django
+pandas
+numpy
+pdfplumber
