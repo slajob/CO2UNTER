@@ -5,7 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CO2ConsumptionForm
 from .models import CO2Consumption
-
+# from user_comsumption import energy_consumption
+from user_comsumption import energy_consumption, water_consumption, waste_consumption, house_heat_consumption,air_conditioning_consumption, private_transport_consumption, every_day_transport_consumption,diet_consumption, fasion_consumption, plane_travel_consumption, go_out_consumption,disposable_packing, mass_events_consumption, mass_events_freq_consumption
+import user_comsumption
 
 def home(request):
     return render(request, 'counter/home.html')
@@ -77,7 +79,8 @@ def add_co2_consumption(request):
 def view_co2_consumption(request):
     try:
         consumption = CO2Consumption.objects.get(user=request.user)
+        energy_co2 = energy_consumption(consumption.energy_consumption) if consumption else None
     except CO2Consumption.DoesNotExist:
         consumption = None
 
-    return render(request, 'counter/view_co2_consumption.html', {'consumption': consumption})
+    return render(request, 'counter/view_co2_consumption.html', {'consumption': consumption, 'energy_co2': energy_co2})
