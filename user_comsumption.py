@@ -23,15 +23,14 @@ def waste_consumption(segregation: bool):
 
 def house_heat_consumption(heat_type: str):
     # przeliczyć ile srednio kg smieci to ile kg co2
-    if heat_type ==  'wegiel':
+    if heat_type ==  'coal':
         heat_amount = 0.9
-    elif heat_type ==  'olej':
+    elif heat_type ==  'gas':
         heat_amount = 3.1
-    elif heat_type ==  'opony':
+    elif heat_type ==  'oil furnace':
         heat_amount = 3.1
-    elif heat_type ==  'miasto':
+    elif heat_type ==  'district heating':
         heat_amount = 3.1
-
     return heat_amount
 
 
@@ -44,22 +43,22 @@ def air_conditioning_consumption(air_conditioning: bool):
 
 
 def private_transport_consumption(fuel_use: float):
-    # przeliczyć spalanie na 100 km to ile kg co2
+    # przeliczyć spalanie auta na 100 km to ile kg co2
     fuel_use_factor = 1.1
     return fuel_use * fuel_use_factor
 
 
 def every_day_transport_consumption(transport_type: str):
     #  ile dany srodek transportu produkuje kg co2
-    if transport_type ==  'auto':
+    if transport_type ==  'car':
         transport_factor = 0.9
-    elif transport_type ==  'autobus':
+    elif transport_type ==  'bus':
         transport_factor = 3.1
-    elif transport_type ==  'tramwaj':
+    elif transport_type ==  'tram':
         transport_factor = 3.1
-    elif transport_type ==  'rower':
+    elif transport_type ==  'bike':
         transport_factor = 3.1
-    elif transport_type ==  'pieszo':
+    elif transport_type ==  'foot':
         transport_factor = 3.1
     else:
         transport_factor = 0.0
@@ -67,17 +66,12 @@ def every_day_transport_consumption(transport_type: str):
 
 
 def transport_distance_consumption(transport_distance: float):
-    # przeliczyć spalanie na 100 km to ile kg co2
-    # transport_distance = 1.1
-    return transport_distance * transport_factor
-
-
-def transport_consumption():
-    pass
+    # ile km dziennkie przejezdzasz
+    return transport_distance
 
 
 def diet_consumption(diet_type: str):
-    #  ile dany dieta produkuje kg co2
+    #  ile dana dieta produkuje kg co2
     if diet_type ==  'vegetarian':
         diet_factor = 0.9
     elif diet_type ==  'vegan':
@@ -163,13 +157,8 @@ def mass_events_freq_consumption(mass_event_freq: str):
     return mass_event_factor
 
 
-
 def main():
     pass
-
-
-
-
 
 if __name__ == '__main__':
     main()
