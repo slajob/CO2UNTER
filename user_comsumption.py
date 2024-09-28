@@ -26,7 +26,7 @@ def waste_consumption(segregation: bool):
 
 def house_heat_consumption(heat_type: str):
     # ile co2 produkuje dany typ ogrzewania
-    return load_config()['heat_amount'].get(heat_type, 0)
+    return load_config()['heat_amouns'].get(heat_type, 0)
 
 def air_conditioning_consumption(air_conditioning: bool):
     # ile co2 produkuje uzywanie klimatyzacji
