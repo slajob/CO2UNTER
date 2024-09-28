@@ -3,8 +3,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 
+
 def home(request):
     return render(request, 'counter/home.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -15,7 +17,12 @@ def register(request):
             return redirect('home')
     else:
         form = UserCreationForm()
+
+    for field in form.fields.values():
+        field.widget.attrs['class'] = 'input'
+
     return render(request, 'counter/register.html', {'form': form})
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -29,7 +36,12 @@ def user_login(request):
                 return redirect('home')
     else:
         form = AuthenticationForm()
+
+    for field in form.fields.values():
+        field.widget.attrs['class'] = 'input'
+
     return render(request, 'counter/login.html', {'form': form})
+
 
 def user_logout(request):
     logout(request)
