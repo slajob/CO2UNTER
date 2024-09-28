@@ -103,5 +103,67 @@ class CO2Consumption(models.Model):
         verbose_name="Częstotliwość wydarzeń masowych"
     )
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return f"{self.user.username}'s CO2 Consumption"
+
+
+
+class CO2ConsumptionHistory(models.Model):
+    HEATING_CHOICES = [
+        ('coal', 'Piec na węgiel'),
+        ('gas', 'Piec gazowy'),
+        ('oil', 'Piec olejowy'),
+        ('district', 'Ogrzewanie miejskie'),
+    ]
+
+    TRAVEL_CHOICES = [
+        ('bus', 'Autobus'),
+        ('car', 'Samochód'),
+        ('tram', 'Tramwaj'),
+        ('walk', 'Pieszo'),
+        ('bike', 'Rower'),
+    ]
+
+    DIET_CHOICES = [
+        ('vegetarian', 'Wegetariańska'),
+        ('vegan', 'Wegańska'),
+        ('meat', 'Mięsna'),
+        ('mediterranean', 'Śródziemnomorska'),
+    ]
+
+    FREQUENCY_CHOICES = [
+        ('1_per_week', '1 raz w tygodniu'),
+        ('2_per_week', '2 razy w tygodniu'),
+        ('1_per_2_weeks', '1 raz na dwa tygodnie'),
+        ('1_per_month', '1 raz w miesiącu'),
+        ('less_often', 'Rzadziej'),
+    ]
+
+    EVENT_PREFERENCE_CHOICES = [
+        ('outdoor', 'Na świeżym powietrzu'),
+        ('stationary', 'Stacjonarny'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    energy_consumption = models.FloatField()
+    water_consumption = models.FloatField()
+    waste_segregation = models.BooleanField()
+    heating_method = models.CharField(max_length=10, choices=HEATING_CHOICES)
+    air_conditioning = models.BooleanField()
+    car_fuel_consumption = models.FloatField()
+    everyday_travel = models.CharField(max_length=10, choices=TRAVEL_CHOICES)
+    daily_travel_distance = models.FloatField()
+    diet = models.CharField(max_length=15, choices=DIET_CHOICES)
+    clothes_factor = models.IntegerField()
+    air_travel_frequency = models.IntegerField()
+    going_out_frequency = models.CharField(max_length=15, choices=FREQUENCY_CHOICES)
+    disposable_packaging = models.BooleanField()
+    mass_event_preference = models.CharField(max_length=10, choices=EVENT_PREFERENCE_CHOICES)
+    mass_event_frequency = models.CharField(max_length=15, choices=FREQUENCY_CHOICES)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s CO2 Consumption History at {self.timestamp}"
