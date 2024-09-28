@@ -1,156 +1,96 @@
+import json
 
+
+def load_config(json_file="./green_data/consumption_constans.json"):
+    with open(json_file, 'r') as file:
+        config = json.load(file)
+    return config
 
 def energy_consumption(amount: float):
     # przeliczyć ile kwh to ile kg co2
-    energy_factor = 1.5
-    return amount * energy_factor
+    return amount * load_config()['energy_factor']
 
 
 def water_consumption(amount: float):
     # przeliczyć ile m3 to ile kg co2
-    water_factor = 1.1
-    return amount * water_factor
+    return amount * load_config()['water_factor']
 
 
 def waste_consumption(segregation: bool):
     # przeliczyć ile srednio kg smieci to ile kg co2
     if segregation:
-        waste_co2_amount = 0.9
+        waste_co2_amount = load_config()['waste_co2']['segregation']
     else:
-        waste_co2_amount = 3.1
+        waste_co2_amount = load_config()['waste_co2']['non_segregation']
     return waste_co2_amount
 
-
 def house_heat_consumption(heat_type: str):
-    # przeliczyć ile srednio kg smieci to ile kg co2
-    if heat_type ==  'coal':
-        heat_amount = 0.9
-    elif heat_type ==  'gas':
-        heat_amount = 3.1
-    elif heat_type ==  'oil furnace':
-        heat_amount = 3.1
-    elif heat_type ==  'district heating':
-        heat_amount = 3.1
-    return heat_amount
-
+    # ile co2 produkuje dany typ ogrzewania
+    return load_config()['heat_amouns'].get(heat_type, 0)
 
 def air_conditioning_consumption(air_conditioning: bool):
+    # ile co2 produkuje uzywanie klimatyzacji
     if air_conditioning:
-        air_conditioning_amount = 0.9
+        return load_config()['air_conditioning']['enabled']
     else:
-        air_conditioning_amount = 3.1
-    return air_conditioning_amount
-
+        return load_config()['air_conditioning']['disabled']
 
 def private_transport_consumption(fuel_use: float):
-    # przeliczyć spalanie auta na 100 km to ile kg co2
-    fuel_use_factor = 1.1
-    return fuel_use * fuel_use_factor
-
+    # przeliczyć ile kg co2 produkuje dane zuzycie paliwa na 100km
+    return fuel_use * load_config()['fuel_use_factor']
 
 def every_day_transport_consumption(transport_type: str):
-    #  ile dany srodek transportu produkuje kg co2
-    if transport_type ==  'car':
-        transport_factor = 0.9
-    elif transport_type ==  'bus':
-        transport_factor = 3.1
-    elif transport_type ==  'tram':
-        transport_factor = 3.1
-    elif transport_type ==  'bike':
-        transport_factor = 3.1
-    elif transport_type ==  'foot':
-        transport_factor = 3.1
-    else:
-        transport_factor = 0.0
-    return transport_factor
-
-
-def transport_distance_consumption(transport_distance: float):
-    # ile km dziennkie przejezdzasz
-    return transport_distance
-
+    # mnoznik rodzaju transportu
+    return load_config()['transport_factors'].get(transport_type, 0)
 
 def diet_consumption(diet_type: str):
-    #  ile dana dieta produkuje kg co2
-    if diet_type ==  'vegetarian':
-        diet_factor = 0.9
-    elif diet_type ==  'vegan':
-        diet_factor = 3.1
-    elif diet_type ==  'meat':
-        diet_factor = 3.1
-    elif diet_type ==  'Mediterranean':
-        diet_factor = 3.1
-    return diet_factor
-
+    # ile co2 produkuje spozywanie danego rodzaju diety
+    return load_config()['diet_factors'].get(diet_type, 0)
 
 def fasion_consumption(new_clothes_freq: str):
-    #  ile kupowanie ubran produkuje kg co2
-    if new_clothes_freq ==  '1 per week':
-        fasion_factor = 0.9
-    elif new_clothes_freq ==  '2 times per week':
-        fasion_factor = 3.1
-    elif new_clothes_freq ==  '1 every two weeks':
-        fasion_factor = 3.1
-    elif new_clothes_freq ==  '1 per month':
-        fasion_factor = 3.1
-    elif new_clothes_freq ==  'less often':
-        fasion_factor = 3.1
-    return fasion_factor
-
+    # ile co2 produkuje kupowanie odziezy z dana czestotliwoscia
+    return load_config()['fasion_factors'].get(new_clothes_freq.replace(" ", "_"), 0)
 
 def plane_travel_consumption(plane_trav_freq: float):
-    #  ile latanie samplotem produkuje kg co2
-    # przyjmujemy ze podroz to 1000km * 2
-    plane_trav_factor = 90
-    return plane_trav_freq * plane_trav_factor
-
+    # ile co2 produkuje podrozowanie samolotem z dana czestotliwoscia (1000km * 2)
+    return plane_trav_freq * load_config()['plane_travel_factor']
 
 def go_out_consumption(go_out_freq: str):
-    #  jak wychodzienie na miasto produkuje kg co2
-    if go_out_freq ==  '1 per week':
-        go_out_factor = 0.9
-    elif go_out_freq ==  '2 times per week':
-        go_out_factor = 3.1
-    elif go_out_freq ==  '1 every two weeks':
-        go_out_factor = 3.1
-    elif go_out_freq ==  '1 per month':
-        go_out_factor = 3.1
-    return go_out_factor
-
+    # ile co2 produkuje wychodzneie na miasto z dana czestotliwoscia
+    return load_config()['go_out_factors'].get(go_out_freq.replace(" ", "_"), 0)
 
 def disposable_packing(disposable: bool):
-    # jak uzywanie jednorazowych opakowan wplywa na produkcje kg co2
+    # ile co2 produkuje wykorzystywanie jednorazowych opakowan
     if disposable:
-        disposable_packing_amount = 0.9
+        return load_config()['disposable_packing']['enabled']
     else:
-        disposable_packing_amount = 3.1
-    return disposable_packing_amount
-
+        return load_config()['disposable_packing']['disabled']
 
 def mass_events_consumption(mass_event: str):
-    #  jak rodzaj imprezy wplywa na produkcje kg co2
-    if mass_event ==  'stationary':
-        mass_event_factor = 0.9
-    elif mass_event ==  'outdoor':
-        mass_event_factor = 3.1
-    return mass_event_factor
-
+    # ile co2 produkuje chodzenie na imprezy masowe
+    return load_config()['mass_event_factors'].get(mass_event, 0)
 
 def mass_events_freq_consumption(mass_event_freq: str):
-    #  jak czestotliwosc impez masowych wplywa na  kg co2
-    if mass_event_freq ==  '1 per week':
-        mass_event_factor = 0.9
-    elif mass_event_freq ==  '2 times per week':
-        mass_event_factor = 3.1
-    elif mass_event_freq ==  '1 every two weeks':
-        mass_event_factor = 3.1
-    elif mass_event_freq ==  '1 per month':
-        mass_event_factor = 3.1
-    return mass_event_factor
+    # ile co2 produkuje chodznie na imprezy masowe z dana czestotliwoscia
+    return load_config()['mass_event_freq_factors'].get(mass_event_freq.replace(" ", "_"), 0)
 
 
 def main():
-    pass
+    # Przykładowe wywołania funkcji
+    print(energy_consumption(100))
+    print(water_consumption(50))
+    print(waste_consumption(True))
+    print(house_heat_consumption('gas'))
+    print(air_conditioning_consumption(True))
+    print(private_transport_consumption(200))
+    print(every_day_transport_consumption('car'))
+    print(diet_consumption('vegetarian'))
+    print(fasion_consumption('1 per week'))
+    print(plane_travel_consumption(2))
+    print(go_out_consumption('1 per week'))
+    print(disposable_packing(True))
+    print(mass_events_consumption('stationary'))
+    print(mass_events_freq_consumption('1 per week'))
 
 if __name__ == '__main__':
     main()
