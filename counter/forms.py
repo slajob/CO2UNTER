@@ -12,7 +12,11 @@ class CO2ConsumptionForm(forms.ModelForm):
             'everyday_travel': forms.RadioSelect(),
             'diet': forms.RadioSelect(),
             'clothes_shopping_frequency': forms.RadioSelect(),
-            'air_travel_frequency': forms.RadioSelect(),
+            'air_travel_frequency': forms.NumberInput(),
+            'going_out_frequency': forms.RadioSelect(),
+            'disposable_packaging': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))),
+            'mass_event_preference': forms.RadioSelect(),
+            'mass_event_frequency': forms.RadioSelect(),
         }
 
     def __init__(self, *args, **kwargs):

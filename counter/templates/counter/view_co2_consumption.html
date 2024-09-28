@@ -49,6 +49,22 @@
                 <th>Air travel frequency</th>
                 <td>{{ consumption.get_air_travel_frequency_display }}</td>
             </tr>
+            <tr>
+                <th>Going out frequency</th>
+                <td>{{ consumption.get_going_out_frequency_display }}</td>
+            </tr>
+            <tr>
+                <th>Use of disposable packaging</th>
+                <td>{% if consumption.disposable_packaging %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Mass event preference</th>
+                <td>{{ consumption.get_mass_event_preference_display }}</td>
+            </tr>
+            <tr>
+                <th>Mass event frequency</th>
+                <td>{{ consumption.get_mass_event_frequency_display }}</td>
+            </tr>
         </table>
         <a href="{% url 'add_co2_consumption' %}" class="button is-primary">Update Data</a>
     {% else %}
