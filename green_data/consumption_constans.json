@@ -15,7 +15,7 @@
         "enabled": 114,
         "disabled": 0
     },
-    "fuel_use_factor": 1.1,
+    "fuel_use_factor": 2.35,
     "transport_factors": {
         "car": null,
         "bus": 0.003,
