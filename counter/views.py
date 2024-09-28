@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib import messages
 
 def home(request):
     return render(request, 'counter/home.html')
@@ -29,3 +30,8 @@ def user_login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'counter/login.html', {'form': form})
+
+def user_logout(request):
+    logout(request)
+    messages.info(request, "You have successfully logged out.")
+    return redirect('home')

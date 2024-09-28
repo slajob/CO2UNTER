@@ -13,7 +13,7 @@
             <div>
                 {% if user.is_authenticated %}
                     <span class="text-white px-3 py-2">Welcome, {{ user.username }}</span>
-                    <a href="#" class="text-white hover:text-green-200 px-3 py-2">Logout</a>
+                    <a href="{% url 'logout' %}" class="text-white hover:text-green-200 px-3 py-2">Logout</a>
                 {% else %}
                     <a href="{% url 'register' %}" class="text-white hover:text-green-200 px-3 py-2">Register</a>
                     <a href="{% url 'login' %}" class="text-white hover:text-green-200 px-3 py-2">Login</a>
@@ -22,6 +22,15 @@
         </div>
     </nav>
     <main class="container mx-auto mt-8">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                        <p class="font-bold">{{ message }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
         {% block content %}
         {% endblock %}
     </main>
