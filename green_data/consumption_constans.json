@@ -5,7 +5,7 @@
         "segregation": 0.9,
         "non_segregation": 3.1
     },
-    "heat_amouns": {
+    "heat_amount": {
         "coal": 0.9,
         "gas": 3.1,
         "oil_furnace": 3.1,
