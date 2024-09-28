@@ -7,7 +7,7 @@ def load_config(json_file="./green_data/consumption_constans.json"):
     return config
 
 def energy_consumption(amount: float):
-    # przeliczyć ile kwh to ile kg co2
+    # przeliczyć ile KWh to ile kg co2
     return amount * load_config()['energy_factor']
 
 
