@@ -1,70 +1,94 @@
 {% extends 'counter/base.html' %}
 
 {% block content %}
-<div class="column is-half is-offset-one-quarter">
-    <h1 class="title">Your CO2 Consumption Data</h1>
+<div class="column is-three-quarters is-offset-one-quarter">
+    <h1 class="title">Twoje dane dotyczące zużycia CO2</h1>
     {% if consumption %}
         <table class="table is-fullwidth">
-            <tr>
-                <th>Energy consumption per month</th>
-                <td>{{ consumption.energy_consumption }} kWh</td>
-            </tr>
-            <tr>
-                <th>Water consumption per month</th>
-                <td>{{ consumption.water_consumption }} m³</td>
-            </tr>
-            <tr>
-                <th>Waste segregation</th>
-                <td>{% if consumption.waste_segregation %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Household heating method</th>
-                <td>{{ consumption.get_heating_method_display }}</td>
-            </tr>
-            <tr>
-                <th>Air conditioning usage</th>
-                <td>{% if consumption.air_conditioning %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Car fuel consumption per 100km</th>
-                <td>{{ consumption.car_fuel_consumption }} L</td>
-            </tr>
-            <tr>
-                <th>Everyday travel method</th>
-                <td>{{ consumption.get_everyday_travel_display }}</td>
-            </tr>
-            <tr>
-                <th>Daily travel distance</th>
-                <td>{{ consumption.daily_travel_distance }} km</td>
-            </tr>
-            <tr>
-                <th>Diet</th>
-                <td>{{ consumption.get_diet_display }}</td>
-            </tr>
-            <tr>
-                <th>Clothes shopping frequency</th>
-                <td>{{ consumption.get_clothes_shopping_frequency_display }}</td>
-            </tr>
-            <tr>
-                <th>Air travel frequency</th>
-                <td>{{ consumption.get_air_travel_frequency_display }}</td>
-            </tr>
-            <tr>
-                <th>Going out frequency</th>
-                <td>{{ consumption.get_going_out_frequency_display }}</td>
-            </tr>
-            <tr>
-                <th>Use of disposable packaging</th>
-                <td>{% if consumption.disposable_packaging %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Mass event preference</th>
-                <td>{{ consumption.get_mass_event_preference_display }}</td>
-            </tr>
-            <tr>
-                <th>Mass event frequency</th>
-                <td>{{ consumption.get_mass_event_frequency_display }}</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Kategoria</th>
+                    <th>Twoje dane</th>
+                    <th>Twoja emisja CO2 na miesiąc</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Miesięczne zużycie energii</th>
+                    <td>{{ consumption.energy_consumption }} kWh</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Miesięczne zużycie wody</th>
+                    <td>{{ consumption.water_consumption }} m³</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Segregacja odpadów</th>
+                    <td>{% if consumption.waste_segregation %}Yes{% else %}No{% endif %}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Rodzaj ogrzewania gospodarstwa domowego</th>
+                    <td>{{ consumption.get_heating_method_display }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Użycie klimatyzacji</th>
+                    <td>{% if consumption.air_conditioning %}Yes{% else %}No{% endif %}</td>
+                <td></td>
+                </tr>
+                <tr>
+                    <th>Zużycie paliwa samochodu na L/100km</th>
+                    <td>{{ consumption.car_fuel_consumption }} L</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Sposób codziennego podróżowania</th>
+                    <td>{{ consumption.get_everyday_travel_display }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Dzienny dystans podróży</th>
+                    <td>{{ consumption.daily_travel_distance }} km</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Dieta</th>
+                    <td>{{ consumption.get_diet_display }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Ilość kupowanych ubrań miesięcznie</th>
+                    <td>{{ consumption.get_clothes_shopping_frequency_display }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Twoje podróże lotnicze (rocznie)</th>
+                    <td>{{ consumption.air_travel_frequency }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Częstotliwość wyjścia na miasto</th>
+                    <td>{{ consumption.get_going_out_frequency_display }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Korzystanie z jednorazowych opakowań</th>
+                    <td>{% if consumption.disposable_packaging %}Yes{% else %}No{% endif %}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Preferencje dotyczące wydarzeń masowych</th>
+                    <td>{{ consumption.get_mass_event_preference_display }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Częstotliwość uczestnictwa w wydarzeniach masowych</th>
+                    <td>{{ consumption.get_mass_event_frequency_display }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
         </table>
         <a href="{% url 'add_co2_consumption' %}" class="button is-primary">Update Data</a>
     {% else %}
