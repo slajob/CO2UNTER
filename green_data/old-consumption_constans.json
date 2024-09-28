@@ -5,11 +5,11 @@
         "segregation": 0.9,
         "non_segregation": 3.1
     },
-    "heat_amouns": {
+    "heat_amount": {
         "coal": 0.9,
         "gas": 3.1,
-        "oil_furnace": 3.1,
-        "district_heating": 3.1
+        "oil": 3.1,
+        "district": 3.1
     },
     "air_conditioning": {
         "enabled": 0.9,
@@ -18,30 +18,32 @@
     "fuel_use_factor": 1.1,
     "transport_factors": {
         "car": 0.9,
-        "bus": 3.1,
+        "bus": 3.0,
         "tram": 3.1,
-        "bike": 3.1,
-        "foot": 3.1
+        "bike": 3.2,
+        "walk": 3.3
     },
     "diet_factors": {
         "vegetarian": 0.9,
         "vegan": 3.1,
         "meat": 3.1,
-        "Mediterranean": 3.1
+        "mediterranean": 3.1
     },
     "fasion_factors": {
         "1_per_week": 0.9,
-        "2_times_per_week": 3.1,
-        "1_every_two_weeks": 3.1,
+        "2_per_week": 3.1,
+        "1_per_2_weeks": 3.1,
         "1_per_month": 3.1,
         "less_often": 3.1
     },
     "plane_travel_factor": 90,
     "go_out_factors": {
         "1_per_week": 0.9,
-        "2_times_per_week": 3.1,
-        "1_every_two_weeks": 3.1,
-        "1_per_month": 3.1
+        "2_per_week": 3.1,
+        "1_per_2_weeks": 3.1,
+        "1_per_month": 3.1,
+        "less_often": 3.1
+
     },
     "disposable_packing": {
         "enabled": 0.9,
@@ -53,8 +55,10 @@
     },
     "mass_event_freq_factors": {
         "1_per_week": 0.9,
-        "2_times_per_week": 3.1,
-        "1_every_two_weeks": 3.1,
-        "1_per_month": 3.1
+        "2_per_week": 3.1,
+        "1_per_2_weeks": 3.1,
+        "1_per_month": 3.1,
+        "less_often": 3.1
+
     }
 }

@@ -1,62 +1,109 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class CO2Consumption(models.Model):
     HEATING_CHOICES = [
-        ('coal', 'Coal furnace'),
-        ('gas', 'Gas furnace'),
-        ('oil', 'Oil furnace'),
-        ('district', 'District heating'),
+        ('coal', 'Piec na węgiel'),
+        ('gas', 'Piec gazowy'),
+        ('oil', 'Piec olejowy'),
+        ('district', 'Ogrzewanie miejskie'),
     ]
-
     TRAVEL_CHOICES = [
-        ('bus', 'Bus'),
-        ('car', 'Car'),
-        ('tram', 'Tram'),
-        ('walk', 'Walk'),
-        ('bike', 'Bike'),
+        ('bus', 'Autobus'),
+        ('car', 'Samochód'),
+        ('tram', 'Tramwaj'),
+        ('walk', 'Pieszo'),
+        ('bike', 'Rower'),
     ]
-
     DIET_CHOICES = [
-        ('vegetarian', 'Vegetarian'),
-        ('vegan', 'Vegan'),
-        ('meat', 'Meat'),
-        ('mediterranean', 'Mediterranean'),
+        ('vegetarian', 'Wegetariańska'),
+        ('vegan', 'Wegańska'),
+        ('meat', 'Mięsna'),
+        ('mediterranean', 'Śródziemnomorska'),
     ]
-
     FREQUENCY_CHOICES = [
-        ('1_per_week', '1 per week'),
-        ('2_per_week', '2 times per week'),
-        ('1_per_2_weeks', '1 every two weeks'),
-        ('1_per_month', '1 per month'),
-        ('less_often', 'Less often'),
+        ('1_per_week', '1 raz w tygodniu'),
+        ('2_per_week', '2 razy w tygodniu'),
+        ('1_per_2_weeks', '1 raz na dwa tygodnie'),
+        ('1_per_month', '1 raz w miesiącu'),
+        ('less_often', 'Rzadziej'),
     ]
-
     EVENT_PREFERENCE_CHOICES = [
-        ('outdoor', 'Outdoor'),
-        ('stationary', 'Stationary'),
+        ('outdoor', 'Na świeżym powietrzu'),
+        ('stationary', 'Stacjonarny'),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    energy_consumption = models.FloatField(help_text="Energy consumption per month (kWh)")
-    water_consumption = models.FloatField(help_text="Water consumption per month (m³)")
-    waste_segregation = models.BooleanField(help_text="Do you segregate waste?")
-    heating_method = models.CharField(max_length=10, choices=HEATING_CHOICES)
-    air_conditioning = models.BooleanField(help_text="Do you use air conditioning?")
-    car_fuel_consumption = models.FloatField(help_text="Car fuel consumption per 100km (L)")
-    everyday_travel = models.CharField(max_length=10, choices=TRAVEL_CHOICES)
-    daily_travel_distance = models.FloatField(help_text="Daily travel distance (km)")
-    diet = models.CharField(max_length=15, choices=DIET_CHOICES)
-    clothes_shopping_frequency = models.CharField(max_length=15, choices=FREQUENCY_CHOICES)
-    air_travel_frequency = models.IntegerField(help_text="How often do you travel with a plane per year?")
-    going_out_frequency = models.CharField(max_length=15, choices=FREQUENCY_CHOICES,
-                                           help_text="How often do you go out?")
-    disposable_packaging = models.BooleanField(help_text="Do you use disposable packaging?")
-    mass_event_preference = models.CharField(max_length=10, choices=EVENT_PREFERENCE_CHOICES,
-                                             help_text="Do you prefer mass events outdoor or stationary?")
-    mass_event_frequency = models.CharField(max_length=15, choices=FREQUENCY_CHOICES,
-                                            help_text="How often do you go to mass events?")
+    energy_consumption = models.FloatField(
+        help_text="Zużycie energii na miesiąc (kWh)",
+        verbose_name="Zużycie energii"
+    )
+    water_consumption = models.FloatField(
+        help_text="Zużycie wody na miesiąc (m³)",
+        verbose_name="Zużycie wody"
+    )
+    waste_segregation = models.BooleanField(
+        help_text="Czy segregujesz odpady?",
+        verbose_name="Segregacja odpadów"
+    )
+    heating_method = models.CharField(
+        max_length=10,
+        choices=HEATING_CHOICES,
+        verbose_name="Metoda ogrzewania"
+    )
+    air_conditioning = models.BooleanField(
+        help_text="Czy używasz klimatyzacji?",
+        verbose_name="Klimatyzacja"
+    )
+    car_fuel_consumption = models.FloatField(
+        help_text="Zużycie paliwa na 100km (L)",
+        verbose_name="Zużycie paliwa"
+    )
+    everyday_travel = models.CharField(
+        max_length=10,
+        choices=TRAVEL_CHOICES,
+        verbose_name="Codzienna podróż"
+    )
+    daily_travel_distance = models.FloatField(
+        help_text="Codzienna odległość podróży (km)",
+        verbose_name="Dzienna odległość podróży"
+    )
+    diet = models.CharField(
+        max_length=15,
+        choices=DIET_CHOICES,
+        verbose_name="Dieta"
+    )
+    clothes_shopping_frequency = models.CharField(
+        max_length=15,
+        choices=FREQUENCY_CHOICES,
+        verbose_name="Częstotliwość zakupu ubrań"
+    )
+    air_travel_frequency = models.IntegerField(
+        help_text="Ile razy w roku podróżujesz samolotem?",
+        verbose_name="Częstotliwość podróży lotniczych (rocznie)"
+    )
+    going_out_frequency = models.CharField(
+        max_length=15,
+        choices=FREQUENCY_CHOICES,
+        help_text="Jak często wychodzisz?",
+        verbose_name="Częstotliwość wychodzenia"
+    )
+    disposable_packaging = models.BooleanField(
+        help_text="Czy używasz jednorazowych opakowań?",
+        verbose_name="Opakowania jednorazowe"
+    )
+    mass_event_preference = models.CharField(
+        max_length=10,
+        choices=EVENT_PREFERENCE_CHOICES,
+        help_text="Czy preferujesz masowe wydarzenia na świeżym powietrzu czy stacjonarne?",
+        verbose_name="Preferencje wydarzeń masowych"
+    )
+    mass_event_frequency = models.CharField(
+        max_length=15,
+        choices=FREQUENCY_CHOICES,
+        help_text="Jak często chodzisz na masowe wydarzenia?",
+        verbose_name="Częstotliwość wydarzeń masowych"
+    )
 
     def __str__(self):
         return f"{self.user.username}'s CO2 Consumption"
