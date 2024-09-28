@@ -24,10 +24,10 @@
             <div class="navbar-start">
                 {% if user.is_authenticated %}
                     <a href="{% url 'view_co2_consumption' %}" class="navbar-item">
-                        View CO2 Consumption
+                        Wyświetl zużycie CO2
                     </a>
                     <a href="{% url 'add_co2_consumption' %}" class="navbar-item">
-                        Add/Update CO2 Consumption
+                        Dodaj/zaktualizuj zużycie CO2
                     </a>
                 {% endif %}
             </div>
@@ -35,21 +35,21 @@
             <div class="navbar-end">
                 {% if user.is_authenticated %}
                     <div class="navbar-item">
-                        Welcome, {{ user.username }}
+                        Witaj, {{ user.username }}
                     </div>
                     <div class="navbar-item">
                         <a href="{% url 'logout' %}" class="button is-light">
-                            Logout
+                            Wyloguj
                         </a>
                     </div>
                 {% else %}
                     <div class="navbar-item">
                         <div class="buttons">
                             <a href="{% url 'register' %}" class="button is-primary">
-                                <strong>Register</strong>
+                                <strong>Zarejestruj się</strong>
                             </a>
                             <a href="{% url 'login' %}" class="button is-light">
-                                Log in
+                                Zaloguj się
                             </a>
                         </div>
                     </div>
