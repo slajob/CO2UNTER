@@ -1,0 +1,59 @@
+{% extends 'counter/base.html' %}
+
+{% block content %}
+<div class="column is-half is-offset-one-quarter">
+    <h1 class="title">Your CO2 Consumption Data</h1>
+    {% if consumption %}
+        <table class="table is-fullwidth">
+            <tr>
+                <th>Energy consumption per month</th>
+                <td>{{ consumption.energy_consumption }} kWh</td>
+            </tr>
+            <tr>
+                <th>Water consumption per month</th>
+                <td>{{ consumption.water_consumption }} m³</td>
+            </tr>
+            <tr>
+                <th>Waste segregation</th>
+                <td>{% if consumption.waste_segregation %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Household heating method</th>
+                <td>{{ consumption.get_heating_method_display }}</td>
+            </tr>
+            <tr>
+                <th>Air conditioning usage</th>
+                <td>{% if consumption.air_conditioning %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Car fuel consumption per 100km</th>
+                <td>{{ consumption.car_fuel_consumption }} L</td>
+            </tr>
+            <tr>
+                <th>Everyday travel method</th>
+                <td>{{ consumption.get_everyday_travel_display }}</td>
+            </tr>
+            <tr>
+                <th>Daily travel distance</th>
+                <td>{{ consumption.daily_travel_distance }} km</td>
+            </tr>
+            <tr>
+                <th>Diet</th>
+                <td>{{ consumption.get_diet_display }}</td>
+            </tr>
+            <tr>
+                <th>Clothes shopping frequency</th>
+                <td>{{ consumption.get_clothes_shopping_frequency_display }}</td>
+            </tr>
+            <tr>
+                <th>Air travel frequency</th>
+                <td>{{ consumption.get_air_travel_frequency_display }}</td>
+            </tr>
+        </table>
+        <a href="{% url 'add_co2_consumption' %}" class="button is-primary">Update Data</a>
+    {% else %}
+        <p>You haven't added any CO2 consumption data yet.</p>
+        <a href="{% url 'add_co2_consumption' %}" class="button is-primary">Add Data</a>
+    {% endif %}
+</div>
+{% endblock %}
