@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CO2UNTER{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-green-500 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'home' %}" class="text-white text-2xl font-bold">CO2UNTER</a>
+            <div>
+                <a href="#" class="text-white hover:text-green-200 px-3 py-2">Register</a>
+                <a href="#" class="text-white hover:text-green-200 px-3 py-2">Login</a>
+            </div>
+        </div>
+    </nav>
+    <main class="container mx-auto mt-8">
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
