@@ -17,7 +17,7 @@
     },
     "fuel_use_factor": 2.35,
     "transport_factors": {
-        "car": null,
+        "car": 0,
         "bus": 0.003,
         "tram": 0.0053,
         "bike": 0,

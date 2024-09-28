@@ -11,7 +11,7 @@ class CO2ConsumptionForm(forms.ModelForm):
             'heating_method': forms.RadioSelect(),
             'everyday_travel': forms.RadioSelect(),
             'diet': forms.RadioSelect(),
-            'clothes_shopping_frequency': forms.RadioSelect(),
+            'clothes_factor': forms.NumberInput(),
             'air_travel_frequency': forms.NumberInput(),
             'going_out_frequency': forms.RadioSelect(),
             'disposable_packaging': forms.RadioSelect(choices=((True, 'Tak'), (False, 'Nie'))),

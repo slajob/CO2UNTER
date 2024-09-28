@@ -6,7 +6,7 @@ from django.contrib import messages
 from .forms import CO2ConsumptionForm
 from .models import CO2Consumption
 # from user_comsumption import energy_consumption
-from user_comsumption import energy_consumption, water_consumption, waste_consumption, house_heat_consumption, air_conditioning_consumption, private_transport_consumption, every_day_transport_consumption,diet_consumption, fasion_consumption, plane_travel_consumption, go_out_consumption,disposable_packing, mass_events_consumption, mass_events_freq_consumption
+from user_comsumption import energy_consumption, water_consumption, waste_consumption, house_heat_consumption, air_conditioning_consumption, private_transport_consumption, every_day_transport_consumption,diet_consumption, fashion_consumption, plane_travel_consumption, go_out_consumption,disposable_packing, mass_events_consumption, mass_events_freq_consumption
 import user_comsumption
 
 def home(request):
@@ -87,7 +87,7 @@ def view_co2_consumption(request):
         private_transport_co2 = format((consumption.daily_travel_distance/100 * consumption.car_fuel_consumption) * private_transport_consumption(), '.2f') #(distance/100 * car_consumption) * private_transport_consumption
         everyday_travel_co2 = every_day_transport_consumption(consumption.everyday_travel) * consumption.daily_travel_distance
         diet_co2 = diet_consumption(consumption.diet)
-        fashion_co2 = fasion_consumption(consumption.clothes_shopping_frequency)
+        fashion_co2 = fashion_consumption(consumption.clothes_factor) * consumption.clothes_factor
         plane_travel_co2 = plane_travel_consumption(consumption.air_travel_frequency)
         go_out_co2 = go_out_consumption(consumption.going_out_frequency)
         disposable_packing_co2 = disposable_packing(consumption.disposable_packaging)

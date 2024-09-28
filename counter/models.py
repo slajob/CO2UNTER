@@ -73,10 +73,8 @@ class CO2Consumption(models.Model):
         choices=DIET_CHOICES,
         verbose_name="Dieta"
     )
-    clothes_shopping_frequency = models.CharField(
-        max_length=15,
-        choices=FREQUENCY_CHOICES,
-        verbose_name="Częstotliwość zakupu ubrań"
+    clothes_factor = models.IntegerField(
+        verbose_name="Ilość kupowanych ubrań na miesiąc"
     )
     air_travel_frequency = models.IntegerField(
         help_text="Ile razy w roku podróżujesz samolotem?",
