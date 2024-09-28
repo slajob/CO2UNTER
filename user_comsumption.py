@@ -98,19 +98,11 @@ def fasion_consumption(new_clothes_freq: str):
     return fasion_factor
 
 
-def plane_travel_consumption(plane_trav_freq: str):
+def plane_travel_consumption(plane_trav_freq: float):
     #  ile latanie samplotem produkuje kg co2
-    if plane_trav_freq ==  '1 per week':
-        plane_trav_factor = 0.9
-    elif plane_trav_freq ==  '2 times per week':
-        plane_trav_factor = 3.1
-    elif plane_trav_freq ==  '1 every two weeks':
-        plane_trav_factor = 3.1
-    elif plane_trav_freq ==  '1 per month':
-        plane_trav_factor = 3.1
-    elif plane_trav_freq ==  'less often':
-        plane_trav_factor = 3.1
-    return plane_trav_factor
+    # przyjmujemy ze podroz to 1000km * 2
+    plane_trav_factor = 90
+    return plane_trav_freq * plane_trav_factor
 
 
 def go_out_consumption(go_out_freq: str):
