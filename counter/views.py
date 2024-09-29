@@ -5,12 +5,53 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CO2ConsumptionForm
 from .models import CO2Consumption
-# from user_comsumption import energy_consumption
 from user_comsumption import energy_consumption, water_consumption, waste_consumption, house_heat_consumption, air_conditioning_consumption, private_transport_consumption, every_day_transport_consumption,diet_consumption, fashion_consumption, plane_travel_consumption, go_out_consumption,disposable_packing, mass_events_consumption, mass_events_freq_consumption
-import user_comsumption
+from django.shortcuts import render
+from django.utils.timezone import now
+from .models import CO2ConsumptionHistory
+from datetime import timedelta
 
+
+
+@login_required
 def home(request):
-    return render(request, 'counter/home.html')
+    current_user = request.user
+
+    # Get the first day of the current month
+    first_day_of_month = now().replace(day=1)
+    # Get the first day of the next month and subtract one second to get the last day of the current month
+    first_day_of_next_month = (first_day_of_month + timedelta(days=32)).replace(day=1)
+    last_day_of_month = first_day_of_next_month - timedelta(seconds=1)
+
+    # Filter history records for the current month
+    month_records = CO2ConsumptionHistory.objects.filter(
+        user=current_user,
+        timestamp__gte=first_day_of_month,
+        timestamp__lt=first_day_of_next_month
+    )
+
+    # Get the first day of the current year
+    first_day_of_year = now().replace(month=1, day=1)
+    # Get the first day of the next year and subtract one second to get the last day of the current year
+    first_day_of_next_year = first_day_of_year.replace(year=first_day_of_year.year + 1)
+    last_day_of_year = first_day_of_next_year - timedelta(seconds=1)
+
+    # Filter history records for the current year
+    year_records = CO2ConsumptionHistory.objects.filter(
+        user=current_user,
+        timestamp__gte=first_day_of_year,
+        timestamp__lt=first_day_of_next_year
+    )
+
+    # Calculate current month's total CO2
+    total_co2_month = sum(record.total_co2 for record in month_records)
+    # Calculate current year's total CO2
+    total_co2_year = sum(record.total_co2 for record in year_records)
+
+    return render(request, 'counter/home.html', {
+        'total_co2_month': total_co2_month,
+        'total_co2_year': total_co2_year
+    })
 
 
 def register(request):
@@ -84,8 +125,10 @@ def view_co2_consumption(request):
         waste_co2 = waste_consumption(consumption.waste_segregation)
         heating_co2 = house_heat_consumption(consumption.heating_method)
         air_conditioning_co2 = air_conditioning_consumption(consumption.air_conditioning)
-        private_transport_co2 = format((consumption.daily_travel_distance / 100 * consumption.car_fuel_consumption) * private_transport_consumption(),'.2f')
-        everyday_travel_co2 = every_day_transport_consumption(consumption.everyday_travel) * consumption.daily_travel_distance
+        private_transport_co2 = (
+                                            consumption.daily_travel_distance / 100 * consumption.car_fuel_consumption) * private_transport_consumption() if consumption.everyday_travel == 'car' else 0
+        everyday_travel_co2 = every_day_transport_consumption(
+            consumption.everyday_travel) * consumption.daily_travel_distance if consumption.everyday_travel != 'car' else 0
         diet_co2 = diet_consumption(consumption.diet)
         fashion_co2 = fashion_consumption(consumption.clothes_factor) * consumption.clothes_factor
         plane_travel_co2 = plane_travel_consumption(consumption.air_travel_frequency)
@@ -94,14 +137,9 @@ def view_co2_consumption(request):
         mass_event_co2 = mass_events_consumption(consumption.mass_event_preference)
         mass_event_freq_co2 = mass_events_freq_consumption(consumption.mass_event_frequency)
 
-        # Sum up all CO2 emissions
-        total_co2 = format((
-                energy_co2 + water_co2 + waste_co2 + heating_co2 + air_conditioning_co2 +
-                (
-                    private_transport_co2 if consumption.get_everyday_travel_display == "Samochód" else everyday_travel_co2) +
-                diet_co2 + fashion_co2 + plane_travel_co2 + go_out_co2 + disposable_packing_co2 +
-                mass_event_co2 + mass_event_freq_co2
-        ),'.2f')
+        total_co2 = (
+                    energy_co2 + water_co2 + waste_co2 + heating_co2 + air_conditioning_co2 + private_transport_co2 + everyday_travel_co2 +
+                    diet_co2 + fashion_co2 + plane_travel_co2 + go_out_co2 + disposable_packing_co2 + mass_event_co2 + mass_event_freq_co2)
 
     except CO2Consumption.DoesNotExist:
         consumption = None
@@ -114,11 +152,21 @@ def view_co2_consumption(request):
         request,
         'counter/view_co2_consumption.html',
         {
-            'consumption': consumption, 'energy_co2': energy_co2, 'water_co2': water_co2,
-            'waste_co2': waste_co2, 'heating_co2': heating_co2, 'air_conditioning_co2': air_conditioning_co2,
-            'private_transport_co2': private_transport_co2, 'everyday_travel_co2': everyday_travel_co2,
-            'diet_co2': diet_co2, 'fashion_co2': fashion_co2, 'plane_travel_co2': plane_travel_co2,
-            'go_out_co2': go_out_co2, 'disposable_packing_co2': disposable_packing_co2,
-            'mass_event_co2': mass_event_co2, 'mass_event_freq_co2': mass_event_freq_co2, 'total_co2': total_co2
+            'consumption': consumption,
+            'energy_co2': energy_co2,
+            'water_co2': water_co2,
+            'waste_co2': waste_co2,
+            'heating_co2': heating_co2,
+            'air_conditioning_co2': air_conditioning_co2,
+            'private_transport_co2': private_transport_co2,
+            'everyday_travel_co2': everyday_travel_co2,
+            'diet_co2': diet_co2,
+            'fashion_co2': fashion_co2,
+            'plane_travel_co2': plane_travel_co2,
+            'go_out_co2': go_out_co2,
+            'disposable_packing_co2': disposable_packing_co2,
+            'mass_event_co2': mass_event_co2,
+            'mass_event_freq_co2': mass_event_freq_co2,
+            'total_co2': total_co2
         }
     )

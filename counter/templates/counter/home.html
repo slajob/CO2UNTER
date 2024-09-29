@@ -1,7 +1,18 @@
-{% extends 'counter/base.html' %}
+    {% extends 'counter/base.html' %}
 
-{% block content %}
-<h1 class="text-4xl font-bold mb-4">Witaj w aplikacji CO2UNTER</h1>
-<p class="text-lg">Zacznij śledzić swój ślad węglowy już dziś!</p>
+    {% block content %}
+    <h1 class="text-4xl font-bold mb-4">Witaj w aplikacji CO2UNTER</h1>
+    <p class="text-lg">Zacznij śledzić swój ślad węglowy już dziś!</p>
 
-{% endblock %}
+    {% if total_co2_month is not None %}
+        <p class="text-lg">Sumaryczna emisja CO2 w bieżącym miesiącu: <strong>{{ total_co2_month }} kg CO2</strong></p>
+    {% else %}
+        <p class="text-lg">Nie ma danych do wyświetlenia dla bieżącego miesiąca.</p>
+    {% endif %}
+
+    {% if total_co2_year is not None %}
+        <p class="text-lg">Sumaryczna emisja CO2 w bieżącym roku: <strong>{{ total_co2_year }} kg CO2</strong></p>
+    {% else %}
+        <p class="text-lg">Nie ma danych do wyświetlenia dla bieżącego roku.</p>
+    {% endif %}
+    {% endblock %}
