@@ -83,8 +83,8 @@ class CO2Consumption(models.Model):
     going_out_frequency = models.CharField(
         max_length=15,
         choices=FREQUENCY_CHOICES,
-        help_text="Jak często wychodzisz?",
-        verbose_name="Częstotliwość wychodzenia"
+        help_text="Jak często wychodzisz na miasto? (posiłek i 1/2 piwa)",
+        verbose_name="Częstotliwość wyjścia na miasto"
     )
     disposable_packaging = models.BooleanField(
         help_text="Czy używasz jednorazowych opakowań?",
@@ -100,7 +100,7 @@ class CO2Consumption(models.Model):
         max_length=15,
         choices=FREQUENCY_CHOICES,
         help_text="Jak często chodzisz na masowe wydarzenia?",
-        verbose_name="Częstotliwość wydarzeń masowych"
+        verbose_name="Częstotliwość uczestnictwa w wydarzeniach masowych"
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

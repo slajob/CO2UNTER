@@ -11,6 +11,7 @@ from django.utils.timezone import now
 from .models import CO2ConsumptionHistory
 from datetime import timedelta
 from absorbtion_data import old_tree, middle_tree, young_tree, parks_absorption
+import numpy as np
 
 
 @login_required
@@ -30,6 +31,7 @@ def home(request):
         timestamp__gte=first_day_of_month,
         timestamp__lt=first_day_of_next_month
     )
+
     year_records = CO2ConsumptionHistory.objects.filter(
         user=current_user,
         timestamp__gte=first_day_of_year,
@@ -45,8 +47,11 @@ def home(request):
     else:
         total_co2_month = 0
 
-    # Sum up for the year
-    total_co2_year = int(sum(total_co2_year_records))
+    # Calculate average for year
+    if total_co2_year_records:
+        total_co2_year = int(sum(total_co2_year_records) / len(total_co2_year_records))
+    else:
+        total_co2_year = 0
 
     old_tree_general_absorb = old_tree(30)
     middle_tree_general_absort = middle_tree(total_co2_month)
@@ -186,6 +191,6 @@ def view_co2_consumption(request):
             'disposable_packing_co2': disposable_packing_co2,
             'mass_event_co2': mass_event_co2,
             'mass_event_freq_co2': mass_event_freq_co2,
-            'total_co2': total_co2
+            'total_co2': np.round(total_co2, 2)
         }
     )
