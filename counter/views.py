@@ -18,46 +18,42 @@ import numpy as np
 def home(request):
     current_user = request.user
 
-    # Get this month's and year's data (as shown previously)
-    first_day_of_month = now().replace(day=1)
-    first_day_of_next_month = (first_day_of_month + timedelta(days=32)).replace(day=1)
-    last_day_of_month = first_day_of_next_month - timedelta(seconds=1)
-    first_day_of_year = now().replace(month=1, day=1)
-    first_day_of_next_year = first_day_of_year.replace(year=first_day_of_year.year + 1)
-    last_day_of_year = first_day_of_next_year - timedelta(seconds=1)
+    # Get today's date
+    today = now()
 
+    # This month's data
+    first_day_of_month = today.replace(day=1)
+    first_day_of_next_month = (first_day_of_month + timedelta(days=32)).replace(day=1)
+
+    # This year's data
+    first_day_of_year = today.replace(month=1, day=1)
+    first_day_of_next_year = first_day_of_year.replace(year=first_day_of_year.year + 1)
+
+    # Query Monthly & Yearly records
     month_records = CO2ConsumptionHistory.objects.filter(
         user=current_user,
         timestamp__gte=first_day_of_month,
         timestamp__lt=first_day_of_next_month
     )
-
     year_records = CO2ConsumptionHistory.objects.filter(
         user=current_user,
         timestamp__gte=first_day_of_year,
         timestamp__lt=first_day_of_next_year
     )
 
+    # Calculate average CO2 consumption for the month
     total_co2_month_records = [record.total_co2 for record in month_records]
+    total_co2_month = int(sum(total_co2_month_records) / len(total_co2_month_records)) if total_co2_month_records else 0
+
+    # Calculate average CO2 consumption for the year
     total_co2_year_records = [record.total_co2 for record in year_records]
+    total_co2_year = int(sum(total_co2_year_records) / len(total_co2_year_records)) if total_co2_year_records else 0
 
-    # Calculate average for month
-    if total_co2_month_records:
-        total_co2_month = int(sum(total_co2_month_records) / len(total_co2_month_records))
-    else:
-        total_co2_month = 0
-
-    # Calculate average for year
-    if total_co2_year_records:
-        total_co2_year = int(sum(total_co2_year_records) / len(total_co2_year_records))
-    else:
-        total_co2_year = 0
-
+    # Calculations for absorption using different tree ages and park absorption
     old_tree_general_absorb = old_tree(30)
     middle_tree_general_absort = middle_tree(total_co2_month)
     young_tree_general_absorb = young_tree(30, total_co2_month)
     parks_general_absorption = parks_absorption(total_co2_month)
-    link = parks_absorption
 
     # Historical Data for the chart
     historical_data = CO2ConsumptionHistory.objects.filter(user=current_user).order_by('timestamp')
