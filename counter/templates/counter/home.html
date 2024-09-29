@@ -6,10 +6,15 @@
 
 {% if total_co2_month is not None %}
     <p class="text-lg">Sumaryczna emisja CO2 w bieżącym miesiącu: <strong>{{ total_co2_month }} kg CO2</strong></p>
+    <p class="text-lg">100 letnie drzewo w przeciągu miesiąca pochłonie: <strong>{{ old_tree_general_absorb }} kg CO2</strong></p>
+    <p class="text-lg">Aby wchłonąć twoją miesięczną emisję CO2 potrzebne jest: <strong>{{ middle_tree_general_absort }} drzew średniej wielkości w jednym okresie wegetacyjnym</strong></p>
+    <p class="text-lg">Potrzeba <strong>{{ young_tree_general_absorb }} </strong> sadzonek rosnących przez miesiąc aby skompensować twoją emisję CO2</p>
+
+
 {% else %}
     <p class="text-lg">Nie ma danych do wyświetlenia dla bieżącego miesiąca.</p>
 {% endif %}
-
+<br>
 {% if total_co2_year is not None %}
     <p class="text-lg">Sumaryczna emisja CO2 w bieżącym roku: <strong>{{ total_co2_year }} kg CO2</strong></p>
 {% else %}

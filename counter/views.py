@@ -10,6 +10,7 @@ from django.shortcuts import render
 from django.utils.timezone import now
 from .models import CO2ConsumptionHistory
 from datetime import timedelta
+from absorbtion_data import old_tree, middle_tree, young_tree, parks_absorption
 
 
 
@@ -40,6 +41,13 @@ def home(request):
     total_co2_month = sum(record.total_co2 for record in month_records)
     total_co2_year = sum(record.total_co2 for record in year_records)
 
+    old_tree_general_absorb = old_tree(30)
+    middle_tree_general_absort = middle_tree(total_co2_month)
+    young_tree_general_absorb = young_tree(30, total_co2_month)
+
+    parks_general_absorption = parks_absorption(total_co2_month)
+
+
     # Historical Data for the chart
     historical_data = CO2ConsumptionHistory.objects.filter(user=current_user).order_by('timestamp')
 
@@ -47,11 +55,16 @@ def home(request):
     labels = [record.timestamp.strftime('%Y-%m-%d') for record in historical_data]
     data = [record.total_co2 for record in historical_data]
 
+
     return render(request, 'counter/home.html', {
         'total_co2_month': total_co2_month,
         'total_co2_year': total_co2_year,
         'labels': labels,
         'data': data,
+        'old_tree_general_absorb': old_tree_general_absorb,
+        'middle_tree_general_absort': middle_tree_general_absort,
+        'young_tree_general_absorb': young_tree_general_absorb,
+        'parks_general_absorption': parks_general_absorption,
     })
 
 
