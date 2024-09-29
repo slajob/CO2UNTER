@@ -164,6 +164,7 @@ class CO2ConsumptionHistory(models.Model):
     mass_event_preference = models.CharField(max_length=10, choices=EVENT_PREFERENCE_CHOICES)
     mass_event_frequency = models.CharField(max_length=15, choices=FREQUENCY_CHOICES)
     timestamp = models.DateTimeField(auto_now_add=True)
+    total_co2 = models.FloatField()
 
     def __str__(self):
-        return f"{self.user.username}'s CO2 Consumption History at {self.timestamp}"
+        return f"{self.user.username}'s CO2 Consumption History at {self.timestamp} - Total CO2: {self.total_co2} kg"
