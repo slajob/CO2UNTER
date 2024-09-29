@@ -9,7 +9,7 @@ def load_config(json_file="./green_data/trees_absorption.json"):
         config = json.load(file)
     return config
 
-def old_tree(time, co2_amount: float):
+def old_tree(time):
     # ile CO2 pochłonie jedno 100-letnie drzewo w okreslonym czasie
     # time to ilosc dni
 
@@ -18,10 +18,10 @@ def old_tree(time, co2_amount: float):
     # years_absorption = co2_amount / old_tree_absorption_const
     # days_needed = years_absorption * 365  # Zakładamy rok kalendarzowy o 365 dniach
 
-    return daily_absorption * time
+    return format(daily_absorption * time, '.2f')
 
 
-def middle_tree(time, co2_amount: float):
+def middle_tree(co2_amount: float):
     # ile drzew sredniej wielkości jest w stanie pochłonąac ich emisje w jednym okresie wegetacyjnym.
     middle_tree_absorption_in_summer_const = load_config()["middle_tree_absorption"]
 
@@ -35,10 +35,10 @@ def young_tree(time: int, co2_amount: float):
     young_tree_absorption = load_config()["young_tree_absorption"]  # kg CO2 rocznie
 
     # Obliczanie, ile CO2 pochłonie jedna sadzonka w podanym czasie
-    young_tree_absorption_in_time = young_tree_absorption * time
+    young_tree_absorption_in_time = int(young_tree_absorption/365) * time
 
     # Obliczanie liczby sadzonek potrzebnych do skompensowania podanej ilości CO2 w danym czasie
-    young_tree_count = co2_amount / young_tree_absorption_in_time
+    young_tree_count = int(co2_amount / young_tree_absorption_in_time)
 
     return young_tree_count
 
@@ -66,7 +66,7 @@ def parks_absorption(co2_amount: float):
 
     filtered_park = parki_df[parki_df['NAZWA PARKU'] == random_park_name]
     # Oblicz procent parku potrzebny do zniwelowania CO2
-    percentage_of_park = float(np.round((co2_amount / monthly_co2_absrption) * 100, 2))
+    percentage_of_park = format((co2_amount / monthly_co2_absrption) * 100, '.2f')
     # Oblicz liczbę drzew potrzebnych do zniwelowania CO2
     trees_needed = int((co2_amount / (monthly_co2_absrption / number_of_trees)))
 
@@ -81,7 +81,7 @@ def parks_absorption(co2_amount: float):
     # Sprawdź, czy park istnieje w pliku pdf
     if not filtered_park.empty:
         park_full_area = float(filtered_park['POW (ha)'].values[0].replace(',', '.'))
-        park_needed_area = float(np.round((percentage_of_park/100) * park_full_area, 2))
+        park_needed_area = format((percentage_of_park/100) * park_full_area, '.2f')
         return_data['pelna_powierzchnia'] = park_full_area
         return_data['powierznia_potrzebna'] = park_needed_area
     else:
