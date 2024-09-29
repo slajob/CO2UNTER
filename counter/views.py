@@ -13,7 +13,6 @@ from datetime import timedelta
 from absorbtion_data import old_tree, middle_tree, young_tree, parks_absorption
 
 
-
 @login_required
 def home(request):
     current_user = request.user
@@ -31,23 +30,28 @@ def home(request):
         timestamp__gte=first_day_of_month,
         timestamp__lt=first_day_of_next_month
     )
-
     year_records = CO2ConsumptionHistory.objects.filter(
         user=current_user,
         timestamp__gte=first_day_of_year,
         timestamp__lt=first_day_of_next_year
     )
 
-    total_co2_month = sum(record.total_co2 for record in month_records)
-    print(total_co2_month)
-    total_co2_year = sum(record.total_co2 for record in year_records)
+    total_co2_month_records = [record.total_co2 for record in month_records]
+    total_co2_year_records = [record.total_co2 for record in year_records]
+
+    # Calculate average for month
+    if total_co2_month_records:
+        total_co2_month = int(sum(total_co2_month_records) / len(total_co2_month_records))
+    else:
+        total_co2_month = 0
+
+    # Sum up for the year
+    total_co2_year = int(sum(total_co2_year_records))
 
     old_tree_general_absorb = old_tree(30)
     middle_tree_general_absort = middle_tree(total_co2_month)
     young_tree_general_absorb = young_tree(30, total_co2_month)
-
     parks_general_absorption = parks_absorption(total_co2_month)
-
     link = parks_absorption
 
     # Historical Data for the chart
@@ -56,7 +60,6 @@ def home(request):
     # Format data for Chart.js
     labels = [record.timestamp.strftime('%Y-%m-%d') for record in historical_data]
     data = [record.total_co2 for record in historical_data]
-
 
     return render(request, 'counter/home.html', {
         'total_co2_month': total_co2_month,
