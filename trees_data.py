@@ -23,14 +23,15 @@ def parse_park_line(line):
         line = re.sub(r"\s*\d+,\d+$", "", line)
 
         # Wyciągnięcie dzielnicy (liczba rzymska i tekst dzielnicy)
-        dzielnica_match = re.search(r"([IVXLCDM]+\s+\w+(?:\s*\-\s*\w+)?)$", line)
-        dzielnica = dzielnica_match.group(1) if dzielnica_match else None
+        # dzielnica_match = re.search(r"(\s+[IVXLCDM]+\s+\w+(?:\s*\-\s*\w+)?)$", line)
+        nazwa_parku_match = re.search(r"^(.*?)(?=\s[IVXLCDM]+(?:,|\s|$))", line)
+        nazwa_parku = nazwa_parku_match.group(1) if nazwa_parku_match else None
 
         # Usunięcie dzielnicy z linii
-        line = re.sub(r"\s*[IVXLCDM]+\s+\w+(?:\s*\-\s*\w+)?$", "", line)
+        line = re.sub(r"^(.*?)(?=\s[IVXLCDM]+(?:,|\s|$))", "", line)
 
         # Reszta linii to nazwa parku
-        nazwa_parku = line.strip()
+        dzielnica = line.strip()
 
         # Zwrócenie podzielonej linii jako lista
         return [index, nazwa_parku, dzielnica, pow_ha]
