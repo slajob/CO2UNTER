@@ -5,31 +5,32 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CO2ConsumptionForm
 from .models import CO2Consumption
-from user_comsumption import energy_consumption, water_consumption, waste_consumption, house_heat_consumption, air_conditioning_consumption, private_transport_consumption, every_day_transport_consumption,diet_consumption, fashion_consumption, plane_travel_consumption, go_out_consumption,disposable_packing, mass_events_consumption, mass_events_freq_consumption
-from django.shortcuts import render
 from django.utils.timezone import now
 from .models import CO2ConsumptionHistory
 from datetime import timedelta
 from absorbtion_data import old_tree, middle_tree, young_tree, parks_absorption
 import numpy as np
 
+# Imports for your consumption calculations
+from user_comsumption import (energy_consumption, water_consumption, waste_consumption,
+                              house_heat_consumption, air_conditioning_consumption,
+                              private_transport_consumption, every_day_transport_consumption,
+                              diet_consumption, fashion_consumption, plane_travel_consumption,
+                              go_out_consumption, disposable_packing, mass_events_consumption,
+                              mass_events_freq_consumption)
 
-@login_required
+
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('guest_home')
+
     current_user = request.user
-
-    # Get today's date
     today = now()
-
-    # This month's data
     first_day_of_month = today.replace(day=1)
     first_day_of_next_month = (first_day_of_month + timedelta(days=32)).replace(day=1)
-
-    # This year's data
     first_day_of_year = today.replace(month=1, day=1)
     first_day_of_next_year = first_day_of_year.replace(year=first_day_of_year.year + 1)
 
-    # Query Monthly & Yearly records
     month_records = CO2ConsumptionHistory.objects.filter(
         user=current_user,
         timestamp__gte=first_day_of_month,
@@ -41,24 +42,18 @@ def home(request):
         timestamp__lt=first_day_of_next_year
     )
 
-    # Calculate average CO2 consumption for the month
     total_co2_month_records = [record.total_co2 for record in month_records]
     total_co2_month = int(sum(total_co2_month_records) / len(total_co2_month_records)) if total_co2_month_records else 0
 
-    # Calculate average CO2 consumption for the year
     total_co2_year_records = [record.total_co2 for record in year_records]
     total_co2_year = int(sum(total_co2_year_records) / len(total_co2_year_records)) if total_co2_year_records else 0
 
-    # Calculations for absorption using different tree ages and park absorption
     old_tree_general_absorb = old_tree(30)
     middle_tree_general_absort = middle_tree(total_co2_month)
     young_tree_general_absorb = young_tree(30, total_co2_month)
     parks_general_absorption = parks_absorption(total_co2_month)
 
-    # Historical Data for the chart
     historical_data = CO2ConsumptionHistory.objects.filter(user=current_user).order_by('timestamp')
-
-    # Format data for Chart.js
     labels = [record.timestamp.strftime('%Y-%m-%d') for record in historical_data]
     data = [record.total_co2 for record in historical_data]
 
@@ -74,6 +69,12 @@ def home(request):
     })
 
 
+def guest_home(request):
+    park_photo = parks_absorption(10)
+    print(park_photo.get('link'))
+    return render(request, 'counter/guest_home.html', {'park_photo': park_photo.get('link')})
+
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -83,10 +84,8 @@ def register(request):
             return redirect('home')
     else:
         form = UserCreationForm()
-
-    for field in form.fields.values():
-        field.widget.attrs['class'] = 'input'
-
+        for field in form.fields.values():
+            field.widget.attrs['class'] = 'input'
     return render(request, 'counter/register.html', {'form': form})
 
 
@@ -102,10 +101,8 @@ def user_login(request):
                 return redirect('home')
     else:
         form = AuthenticationForm()
-
-    for field in form.fields.values():
-        field.widget.attrs['class'] = 'input'
-
+        for field in form.fields.values():
+            field.widget.attrs['class'] = 'input'
     return render(request, 'counter/login.html', {'form': form})
 
 
@@ -132,7 +129,6 @@ def add_co2_consumption(request):
             return redirect('view_co2_consumption')
     else:
         form = CO2ConsumptionForm(instance=consumption)
-
     return render(request, 'counter/add_co2_consumption.html', {'form': form})
 
 
@@ -157,10 +153,10 @@ def view_co2_consumption(request):
         mass_event_co2 = mass_events_consumption(consumption.mass_event_preference)
         mass_event_freq_co2 = mass_events_freq_consumption(consumption.mass_event_frequency)
 
-        total_co2 = (
-                    energy_co2 + water_co2 + waste_co2 + heating_co2 + air_conditioning_co2 + private_transport_co2 + everyday_travel_co2 +
-                    diet_co2 + fashion_co2 + plane_travel_co2 + go_out_co2 + disposable_packing_co2 + mass_event_co2 + mass_event_freq_co2)
-
+        total_co2 = (energy_co2 + water_co2 + waste_co2 + heating_co2 + air_conditioning_co2 +
+                     private_transport_co2 + everyday_travel_co2 + diet_co2 + fashion_co2 +
+                     plane_travel_co2 + go_out_co2 + disposable_packing_co2 + mass_event_co2 +
+                     mass_event_freq_co2)
     except CO2Consumption.DoesNotExist:
         consumption = None
         energy_co2 = water_co2 = waste_co2 = heating_co2 = air_conditioning_co2 = None
@@ -168,25 +164,21 @@ def view_co2_consumption(request):
         go_out_co2 = disposable_packing_co2 = mass_event_co2 = mass_event_freq_co2 = None
         total_co2 = 0
 
-    return render(
-        request,
-        'counter/view_co2_consumption.html',
-        {
-            'consumption': consumption,
-            'energy_co2': energy_co2,
-            'water_co2': water_co2,
-            'waste_co2': waste_co2,
-            'heating_co2': heating_co2,
-            'air_conditioning_co2': air_conditioning_co2,
-            'private_transport_co2': private_transport_co2,
-            'everyday_travel_co2': everyday_travel_co2,
-            'diet_co2': diet_co2,
-            'fashion_co2': fashion_co2,
-            'plane_travel_co2': plane_travel_co2,
-            'go_out_co2': go_out_co2,
-            'disposable_packing_co2': disposable_packing_co2,
-            'mass_event_co2': mass_event_co2,
-            'mass_event_freq_co2': mass_event_freq_co2,
-            'total_co2': np.round(total_co2, 2)
-        }
-    )
+    return render(request, 'counter/view_co2_consumption.html', {
+        'consumption': consumption,
+        'energy_co2': energy_co2,
+        'water_co2': water_co2,
+        'waste_co2': waste_co2,
+        'heating_co2': heating_co2,
+        'air_conditioning_co2': air_conditioning_co2,
+        'private_transport_co2': private_transport_co2,
+        'everyday_travel_co2': everyday_travel_co2,
+        'diet_co2': diet_co2,
+        'fashion_co2': fashion_co2,
+        'plane_travel_co2': plane_travel_co2,
+        'go_out_co2': go_out_co2,
+        'disposable_packing_co2': disposable_packing_co2,
+        'mass_event_co2': mass_event_co2,
+        'mass_event_freq_co2': mass_event_freq_co2,
+        'total_co2': np.round(total_co2, 2)
+    })

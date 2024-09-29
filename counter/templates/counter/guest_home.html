@@ -1,0 +1,21 @@
+{% extends 'counter/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guest Home</title>
+</head>
+<body>
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title is-size-3 has-text-weight-bold">Witaj w aplikacji CO2UNTER</h1>
+            <br>
+            <p class="subtitle"><a href="{% url 'register' %}">Zarejestruj</a> się lub <a href="{% url 'login' %}">zaloguj</a> i zacznij śledzić swój ślad węglowy już dziś!</p>
+        </div>
+    </div>
+</section>
+    <center><img src="{{ park_photo }}" class="image"></center>
+</body>
+</html>
+{% endblock %}
