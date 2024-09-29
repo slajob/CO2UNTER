@@ -84,7 +84,7 @@ def view_co2_consumption(request):
         waste_co2 = waste_consumption(consumption.waste_segregation)
         heating_co2 = house_heat_consumption(consumption.heating_method)
         air_conditioning_co2 = air_conditioning_consumption(consumption.air_conditioning)
-        private_transport_co2 = format((consumption.daily_travel_distance/100 * consumption.car_fuel_consumption) * private_transport_consumption(), '.2f') #(distance/100 * car_consumption) * private_transport_consumption
+        private_transport_co2 = format((consumption.daily_travel_distance / 100 * consumption.car_fuel_consumption) * private_transport_consumption(),'.2f')
         everyday_travel_co2 = every_day_transport_consumption(consumption.everyday_travel) * consumption.daily_travel_distance
         diet_co2 = diet_consumption(consumption.diet)
         fashion_co2 = fashion_consumption(consumption.clothes_factor) * consumption.clothes_factor
@@ -93,26 +93,32 @@ def view_co2_consumption(request):
         disposable_packing_co2 = disposable_packing(consumption.disposable_packaging)
         mass_event_co2 = mass_events_consumption(consumption.mass_event_preference)
         mass_event_freq_co2 = mass_events_freq_consumption(consumption.mass_event_frequency)
+
+        # Sum up all CO2 emissions
+        total_co2 = format((
+                energy_co2 + water_co2 + waste_co2 + heating_co2 + air_conditioning_co2 +
+                (
+                    private_transport_co2 if consumption.get_everyday_travel_display == "Samochód" else everyday_travel_co2) +
+                diet_co2 + fashion_co2 + plane_travel_co2 + go_out_co2 + disposable_packing_co2 +
+                mass_event_co2 + mass_event_freq_co2
+        ),'.2f')
+
     except CO2Consumption.DoesNotExist:
         consumption = None
         energy_co2 = water_co2 = waste_co2 = heating_co2 = air_conditioning_co2 = None
         private_transport_co2 = everyday_travel_co2 = diet_co2 = fashion_co2 = plane_travel_co2 = None
         go_out_co2 = disposable_packing_co2 = mass_event_co2 = mass_event_freq_co2 = None
+        total_co2 = 0
 
-    return render(request, 'counter/view_co2_consumption.html', {
-        'consumption': consumption,
-        'energy_co2': energy_co2,
-        'water_co2': water_co2,
-        'waste_co2': waste_co2,
-        'heating_co2': heating_co2,
-        'air_conditioning_co2': air_conditioning_co2,
-        'private_transport_co2': private_transport_co2,
-        'everyday_travel_co2': everyday_travel_co2,
-        'diet_co2': diet_co2,
-        'fashion_co2': fashion_co2,
-        'plane_travel_co2': plane_travel_co2,
-        'go_out_co2': go_out_co2,
-        'disposable_packing_co2': disposable_packing_co2,
-        'mass_event_co2': mass_event_co2,
-        'mass_event_freq_co2': mass_event_freq_co2,
-    })
+    return render(
+        request,
+        'counter/view_co2_consumption.html',
+        {
+            'consumption': consumption, 'energy_co2': energy_co2, 'water_co2': water_co2,
+            'waste_co2': waste_co2, 'heating_co2': heating_co2, 'air_conditioning_co2': air_conditioning_co2,
+            'private_transport_co2': private_transport_co2, 'everyday_travel_co2': everyday_travel_co2,
+            'diet_co2': diet_co2, 'fashion_co2': fashion_co2, 'plane_travel_co2': plane_travel_co2,
+            'go_out_co2': go_out_co2, 'disposable_packing_co2': disposable_packing_co2,
+            'mass_event_co2': mass_event_co2, 'mass_event_freq_co2': mass_event_freq_co2, 'total_co2': total_co2
+        }
+    )

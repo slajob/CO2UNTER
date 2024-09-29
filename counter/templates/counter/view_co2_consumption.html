@@ -1,5 +1,4 @@
 {% extends 'counter/base.html' %}
-
 {% block content %}
 <div class="column is-three-quarters is-offset-one-quarter">
     <h1 class="title">Twoje dane dotyczące zużycia CO2</h1>
@@ -45,13 +44,10 @@
             </tr>
             {% if consumption.get_everyday_travel_display == "Samochód" %}
             <tr>
-              <th>Zużycie paliwa samochodu</th>
-              <td>{{ consumption.car_fuel_consumption }} l/100km</td>
-              <td></td>
+                <th>Zużycie paliwa samochodu</th>
+                <td>{{ consumption.car_fuel_consumption }} l/100km</td>
+                <td></td>
             </tr>
-            {% endif %}
-
-            {% if consumption.get_everyday_travel_display == "Samochód" %}
             <tr>
                 <th>Dzienny dystans podróży</th>
                 <td>{{ consumption.daily_travel_distance }} km</td>
@@ -98,6 +94,11 @@
                 <th>Częstotliwość uczestnictwa w wydarzeniach masowych</th>
                 <td>{{ consumption.get_mass_event_frequency_display }}</td>
                 <td>{{ mass_event_freq_co2 }} kg CO2</td>
+            </tr>
+            <tr>
+                <th>Całkowita emisja CO2 w tym miesiącu</th>
+                <td></td>
+                <td>{{ total_co2 }} kg CO2</td>
             </tr>
         </tbody>
     </table>
