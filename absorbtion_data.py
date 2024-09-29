@@ -35,7 +35,7 @@ def young_tree(time: int, co2_amount: float):
     young_tree_absorption = load_config()["young_tree_absorption"]  # kg CO2 rocznie
 
     # Obliczanie, ile CO2 pochłonie jedna sadzonka w podanym czasie
-    young_tree_absorption_in_time = int(young_tree_absorption/365) * time
+    young_tree_absorption_in_time = young_tree_absorption/365 * time
 
     # Obliczanie liczby sadzonek potrzebnych do skompensowania podanej ilości CO2 w danym czasie
     young_tree_count = int(co2_amount / young_tree_absorption_in_time)
@@ -92,7 +92,7 @@ def parks_absorption(co2_amount: float):
 
 
 def main():
-    pass
+    print(young_tree(30, 5656))
 
 
 if __name__ == '__main__':
