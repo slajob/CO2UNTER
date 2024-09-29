@@ -17,40 +17,41 @@ from datetime import timedelta
 def home(request):
     current_user = request.user
 
-    # Get the first day of the current month
+    # Get this month's and year's data (as shown previously)
     first_day_of_month = now().replace(day=1)
-    # Get the first day of the next month and subtract one second to get the last day of the current month
     first_day_of_next_month = (first_day_of_month + timedelta(days=32)).replace(day=1)
     last_day_of_month = first_day_of_next_month - timedelta(seconds=1)
+    first_day_of_year = now().replace(month=1, day=1)
+    first_day_of_next_year = first_day_of_year.replace(year=first_day_of_year.year + 1)
+    last_day_of_year = first_day_of_next_year - timedelta(seconds=1)
 
-    # Filter history records for the current month
     month_records = CO2ConsumptionHistory.objects.filter(
         user=current_user,
         timestamp__gte=first_day_of_month,
         timestamp__lt=first_day_of_next_month
     )
 
-    # Get the first day of the current year
-    first_day_of_year = now().replace(month=1, day=1)
-    # Get the first day of the next year and subtract one second to get the last day of the current year
-    first_day_of_next_year = first_day_of_year.replace(year=first_day_of_year.year + 1)
-    last_day_of_year = first_day_of_next_year - timedelta(seconds=1)
-
-    # Filter history records for the current year
     year_records = CO2ConsumptionHistory.objects.filter(
         user=current_user,
         timestamp__gte=first_day_of_year,
         timestamp__lt=first_day_of_next_year
     )
 
-    # Calculate current month's total CO2
     total_co2_month = sum(record.total_co2 for record in month_records)
-    # Calculate current year's total CO2
     total_co2_year = sum(record.total_co2 for record in year_records)
+
+    # Historical Data for the chart
+    historical_data = CO2ConsumptionHistory.objects.filter(user=current_user).order_by('timestamp')
+
+    # Format data for Chart.js
+    labels = [record.timestamp.strftime('%Y-%m-%d') for record in historical_data]
+    data = [record.total_co2 for record in historical_data]
 
     return render(request, 'counter/home.html', {
         'total_co2_month': total_co2_month,
-        'total_co2_year': total_co2_year
+        'total_co2_year': total_co2_year,
+        'labels': labels,
+        'data': data,
     })
 
 

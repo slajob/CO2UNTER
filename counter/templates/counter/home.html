@@ -1,18 +1,45 @@
-    {% extends 'counter/base.html' %}
+{% extends 'counter/base.html' %}
 
-    {% block content %}
-    <h1 class="text-4xl font-bold mb-4">Witaj w aplikacji CO2UNTER</h1>
-    <p class="text-lg">Zacznij śledzić swój ślad węglowy już dziś!</p>
+{% block content %}
+<h1 class="text-4xl font-bold mb-4">Witaj w aplikacji CO2UNTER</h1>
+<p class="text-lg">Zacznij śledzić swój ślad węglowy już dziś!</p>
 
-    {% if total_co2_month is not None %}
-        <p class="text-lg">Sumaryczna emisja CO2 w bieżącym miesiącu: <strong>{{ total_co2_month }} kg CO2</strong></p>
-    {% else %}
-        <p class="text-lg">Nie ma danych do wyświetlenia dla bieżącego miesiąca.</p>
-    {% endif %}
+{% if total_co2_month is not None %}
+    <p class="text-lg">Sumaryczna emisja CO2 w bieżącym miesiącu: <strong>{{ total_co2_month }} kg CO2</strong></p>
+{% else %}
+    <p class="text-lg">Nie ma danych do wyświetlenia dla bieżącego miesiąca.</p>
+{% endif %}
 
-    {% if total_co2_year is not None %}
-        <p class="text-lg">Sumaryczna emisja CO2 w bieżącym roku: <strong>{{ total_co2_year }} kg CO2</strong></p>
-    {% else %}
-        <p class="text-lg">Nie ma danych do wyświetlenia dla bieżącego roku.</p>
-    {% endif %}
-    {% endblock %}
+{% if total_co2_year is not None %}
+    <p class="text-lg">Sumaryczna emisja CO2 w bieżącym roku: <strong>{{ total_co2_year }} kg CO2</strong></p>
+{% else %}
+    <p class="text-lg">Nie ma danych do wyświetlenia dla bieżącego roku.</p>
+{% endif %}
+
+<!-- Chart Container -->
+<canvas id="co2Chart" width="400" height="200"></canvas>
+
+<script>
+    var ctx = document.getElementById('co2Chart').getContext('2d');
+    var co2Chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ labels|safe }},
+            datasets: [{
+                label: 'Emisja CO2 (kg)',
+                data: {{ data|safe }},
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
