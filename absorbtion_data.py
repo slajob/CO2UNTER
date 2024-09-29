@@ -18,7 +18,7 @@ def old_tree(time):
     # years_absorption = co2_amount / old_tree_absorption_const
     # days_needed = years_absorption * 365  # Zakładamy rok kalendarzowy o 365 dniach
 
-    return format(daily_absorption * time, '.2f')
+    return np.round(daily_absorption * time, 2)
 
 
 def middle_tree(co2_amount: float):
@@ -66,7 +66,7 @@ def parks_absorption(co2_amount: float):
 
     filtered_park = parki_df[parki_df['NAZWA PARKU'] == random_park_name]
     # Oblicz procent parku potrzebny do zniwelowania CO2
-    percentage_of_park = format((co2_amount / monthly_co2_absrption) * 100, '.2f')
+    percentage_of_park = np.round((co2_amount / monthly_co2_absrption) * 100, 2)
     # Oblicz liczbę drzew potrzebnych do zniwelowania CO2
     trees_needed = int((co2_amount / (monthly_co2_absrption / number_of_trees)))
 
@@ -81,7 +81,7 @@ def parks_absorption(co2_amount: float):
     # Sprawdź, czy park istnieje w pliku pdf
     if not filtered_park.empty:
         park_full_area = float(filtered_park['POW (ha)'].values[0].replace(',', '.'))
-        park_needed_area = format((percentage_of_park/100) * park_full_area, '.2f')
+        park_needed_area = np.round((percentage_of_park/100) * park_full_area, 2)
         return_data['pelna_powierzchnia'] = park_full_area
         return_data['powierznia_potrzebna'] = park_needed_area
     else:
@@ -93,7 +93,7 @@ def parks_absorption(co2_amount: float):
 
 def main():
     print(young_tree(30, 5656))
-
+    print(parks_absorption(4335))
 
 if __name__ == '__main__':
     main()
