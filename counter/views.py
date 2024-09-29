@@ -39,6 +39,7 @@ def home(request):
     )
 
     total_co2_month = sum(record.total_co2 for record in month_records)
+    print(total_co2_month)
     total_co2_year = sum(record.total_co2 for record in year_records)
 
     old_tree_general_absorb = old_tree(30)
