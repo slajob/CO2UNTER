@@ -10,6 +10,7 @@ from .models import CO2ConsumptionHistory
 from datetime import timedelta
 from absorbtion_data import old_tree, middle_tree, young_tree, parks_absorption
 import numpy as np
+from django.views.decorators.csrf import csrf_exempt
 
 # Imports for your consumption calculations
 from user_comsumption import (energy_consumption, water_consumption, waste_consumption,
@@ -19,7 +20,7 @@ from user_comsumption import (energy_consumption, water_consumption, waste_consu
                               go_out_consumption, disposable_packing, mass_events_consumption,
                               mass_events_freq_consumption)
 
-
+@csrf_exempt
 def home(request):
     if not request.user.is_authenticated:
         return redirect('guest_home')
@@ -68,13 +69,13 @@ def home(request):
         'parks_general_absorption': parks_general_absorption,
     })
 
-
+@csrf_exempt
 def guest_home(request):
     park_photo = parks_absorption(10)
     print(park_photo.get('link'))
     return render(request, 'counter/guest_home.html', {'park_photo': park_photo.get('link')})
 
-
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -88,7 +89,7 @@ def register(request):
             field.widget.attrs['class'] = 'input'
     return render(request, 'counter/register.html', {'form': form})
 
-
+@csrf_exempt
 def user_login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -105,13 +106,13 @@ def user_login(request):
             field.widget.attrs['class'] = 'input'
     return render(request, 'counter/login.html', {'form': form})
 
-
+@csrf_exempt
 def user_logout(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
     return redirect('home')
 
-
+@csrf_exempt
 @login_required
 def add_co2_consumption(request):
     try:
@@ -131,7 +132,7 @@ def add_co2_consumption(request):
         form = CO2ConsumptionForm(instance=consumption)
     return render(request, 'counter/add_co2_consumption.html', {'form': form})
 
-
+@csrf_exempt
 @login_required
 def view_co2_consumption(request):
     try:
