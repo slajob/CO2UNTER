@@ -1,298 +1,367 @@
 {
-  "Błonia Krakowskie": {
-    "ilosc drzew": 298,
-    "co2_absorpcja": 19000
-  },
-  "Bulwary Wisły": {
-    "ilosc drzew": 953,
-    "co2_absorpcja": 45000
-  },
-  "Fort Batowice": {
-    "ilosc drzew": 1584,
-    "co2_absorpcja": 52000
-  },
-  "Fort Mistrzejowice": {
-    "ilosc drzew": 404,
-    "co2_absorpcja": 12000
-  },
-  "Park Aleksandry": {
-    "ilosc drzew": 3555,
-    "co2_absorpcja": 265000
-  },
-  "Park Dąbie": {
-    "ilosc drzew": 1466,
-    "co2_absorpcja": 108000
-  },
-  "Park Decjusza": {
-    "ilosc drzew": 1238,
-    "co2_absorpcja": 58000
-  },
-  "Park im. A. E. Jerzmanowskich": {
-    "ilosc drzew": 920,
-    "co2_absorpcja": 38000
-  },
-  "Park im. H. Jordana": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park im. S. Wyspiańskiego": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park im. S. Żeromskiego": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park im. T. Kościuszki": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park im. W. Bednarskiego": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Jalu Kurka": {
-    "ilosc drzew": 214,
-    "co2_absorpcja": 13000
-  },
-  "Park Klasztorna": {
-    "ilosc drzew": 55,
-    "co2_absorpcja": 2000
-  },
-  "Park Kleparski": {
-    "ilosc drzew": 618,
-    "co2_absorpcja": 42000
-  },
-  "Park Krakowski im. M. Grechuty": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Kleparski": {
-    "ilosc drzew": 618,
-    "co2_absorpcja": 8000
-  },
-  "Park Kultury": {
-    "ilosc drzew": 947,
-    "co2_absorpcja": 61000
-  },
-  "Park Kurdwanów": {
-    "ilosc drzew": 547,
-    "co2_absorpcja": 23000
-  },
-  "Park Lilli Wenedy": {
-    "ilosc drzew": 1600,
-    "co2_absorpcja": 89000
-  },
-  "Park Lotników Polskich": {
-    "ilosc drzew": 8555,
-    "co2_absorpcja": 655000
-  },
-  "Park Łuczanowice": {
-    "ilosc drzew": 92,
-    "co2_absorpcja": 2000
-  },
-  "Park Maćka i Doroty": {
-    "ilosc drzew": 2184,
-    "co2_absorpcja": 111000
-  },
-  "Park Młynówka Królewska": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park pil. gen. S. Skalskiego": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Ratuszowy": {
-    "ilosc drzew": 283,
-    "co2_absorpcja": 18000
-  },
-  "Park Solvay": {
-    "ilosc drzew": 3583,
-    "co2_absorpcja": 151000
-  },
-  "Park Strzelecki": {
-    "ilosc drzew": 217,
-    "co2_absorpcja": 5000
-  },
-  "Park Szwedzki": {
-    "ilosc drzew": 284,
-    "co2_absorpcja": 14000
-  },
-  "Park św. Wincentego a'Paulo": {
-    "ilosc drzew": 271,
-    "co2_absorpcja": 12000
-  },
-  "Park Tysiąclecia": {
-    "ilosc drzew": 2422,
-    "co2_absorpcja": 70000
-  },
-  "Park Wadów": {
-    "ilosc drzew": 291,
-    "co2_absorpcja": 12000
-  },
-  "Park Wiśniowy Sad": {
-    "ilosc drzew": 176,
-    "co2_absorpcja": 12000
-  },
-   "Park Zalew Nowohucki": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Zielony Jar Wandy": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Planty Bieńczyckie": {
-    "ilosc drzew": 1730,
-    "co2_absorpcja": 99000
-  },
-  "Planty Floriana Nowackiego": {
-    "ilosc drzew": 328,
-    "co2_absorpcja": 16000
-  },
-  "Planty Krakowskie": {
-    "ilosc drzew": 2444,
-    "co2_absorpcja": 112000
-  },
-  "Planty Mistrzejowickie": {
-    "ilosc drzew": 900,
-    "co2_absorpcja": 30000
-  },
-  "Park Dębnicki": {
-    "ilosc drzew": 1707,
-    "co2_absorpcja": 103
-  },
-  "Park Rżąka": {
-    "ilosc drzew": 277,
-    "co2_absorpcja": 11000
-  },
-  "Park Zaczarowanej Dorożki": {
-    "ilosc drzew": 111,
-    "co2_absorpcja": 6000
-  },
-  "Park linearny Ruczaj": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Ogród Łobzów": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Stacja Wisła": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Czyżyny": {
-    "ilosc drzew": 317,
-    "co2_absorpcja": 4000
-  },
-  "Park Duchacki": {
-    "ilosc drzew": 97,
-    "co2_absorpcja": 5000
-  },
-  "Park Grzegórzecki": {
-    "ilosc drzew": 2671,
-    "co2_absorpcja": 141000
-  },
-  "Park im. Wisławy Szymborskiej": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Jana Matejki": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Łagiewnicki": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Miejski Bagry Wielkie": {
-    "ilosc drzew": 1660,
-    "co2_absorpcja": 60000
-  },
-  "Park Ogród nad Sudołem": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park przy Dworze Czeczów": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park przy Forcie Borek": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park przy Forcie Bronowice": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park przy ul. Radzikowskiego": {
-    "ilosc drzew": 451,
-    "co2_absorpcja": 28000
-  },
-  "Park Przylasek Rusiecki": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Przylasek Wyciąski": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Pychowicki": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Reduta": {
-    "ilosc drzew": 461,
-    "co2_absorpcja": 23000
-  },
-  "Park Rzeczny Białucha": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Rzeczny Drwinka": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Rzeczny Ogród Płaszów": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Rzeczny Wilga": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Staw Płaszowski": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Zakrzówek": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Woźniców (część)": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Rzeczny Rudawa": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Złocień": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Rzeczny im. W. Tetmajera": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Węgrzynowice": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  },
-  "Park Kolejowy (I etap)": {
-    "ilosc drzew": null,
-    "co2_absorpcja": null
-  }
+    "Błonia Krakowskie": {
+        "ilosc drzew": 298,
+        "co2_absorpcja": 19000,
+        "link": null
+    },
+    "Bulwary Wisły": {
+        "ilosc drzew": 953,
+        "co2_absorpcja": 45000,
+        "link": "https://media.krakow.travel/photos/19557/noresize.jpg"
+    },
+    "Fort Batowice": {
+        "ilosc drzew": 1584,
+        "co2_absorpcja": 52000,
+        "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Fort48%E2%80%9EBatowice%E2%80%9D-Mistrzejowice-POL%2C_Krak%C3%B3w.jpg/240px-Fort48%E2%80%9EBatowice%E2%80%9D-Mistrzejowice-POL%2C_Krak%C3%B3w.jpg"
+    },
+    "Fort Mistrzejowice": {
+        "ilosc drzew": 404,
+        "co2_absorpcja": 12000,
+        "link": "https://lovekrakow.pl/images/news/54519/1340x754/41922d27662ec4e0bafe5334ac07497d0197655d.jpg"
+    },
+    "Park Aleksandry": {
+        "ilosc drzew": 3555,
+        "co2_absorpcja": 265000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/aleksandry/1.jpg"
+    },
+    "Park Dąbie": {
+        "ilosc drzew": 1466,
+        "co2_absorpcja": 108000,
+        "link": "https://zzm.krakow.pl/images/DabDJI_0008.jpg"
+    },
+    "Park Decjusza": {
+        "ilosc drzew": 1238,
+        "co2_absorpcja": 58000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/decjusza/3.jpg"
+    },
+    "Park im. A. E. Jerzmanowskich": {
+        "ilosc drzew": 920,
+        "co2_absorpcja": 38000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/jerzmanowskich/Jerzmanowskich_2.jpg"
+    },
+    "Park im. H. Jordana": {
+        "ilosc drzew": 1716,
+        "co2_absorpcja": 87000,
+        "link": "https://zzm.krakow.pl/images/jDJI_0031.jpg"
+    },
+    "Park im. S. Wyspiańskiego": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park im. S. Żeromskiego": {
+        "ilosc drzew": 323,
+        "co2_absorpcja": 15000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/zeromskiego/DSCN5906%20(2).JPG"
+    },
+    "Park im. T. Kościuszki": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park im. W. Bednarskiego": {
+        "ilosc drzew": 2566,
+        "co2_absorpcja": 207000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/3Park%20Bednarskiego.jpg"
+    },
+    "Park Jalu Kurka": {
+        "ilosc drzew": 214,
+        "co2_absorpcja": 13000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/Jalu%20Kurka/JALU2.jpg"
+    },
+    "Park Klasztorna": {
+        "ilosc drzew": 55,
+        "co2_absorpcja": 2000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/Klasztorna/JPG/5.jpg"
+    },
+    "Park Kleparski": {
+        "ilosc drzew": 618,
+        "co2_absorpcja": 8000,
+        "link": null
+    },
+    "Park Krakowski im. M. Grechuty": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Kultury": {
+        "ilosc drzew": 947,
+        "co2_absorpcja": 61000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/pkult.jpg"
+    },
+    "Park Kurdwanów": {
+        "ilosc drzew": 547,
+        "co2_absorpcja": 23000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/kurwanow/DRUK/DJI_0046.jpg"
+    },
+    "Park Lilli Wenedy": {
+        "ilosc drzew": 1600,
+        "co2_absorpcja": 89000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/lilii/1.jpg"
+    },
+    "Park Lotników Polskich": {
+        "ilosc drzew": 8555,
+        "co2_absorpcja": 655000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/Park%20Lotnikow%20Polskich/DJI_0073.jpg"
+    },
+    "Park Łuczanowice": {
+        "ilosc drzew": 92,
+        "co2_absorpcja": 2000,
+        "link": "https://upload.wikimedia.org/wikipedia/commons/9/94/A-604_Krak%C3%B3w-Nowa_Huta-%C5%81uczanowice%2Cpark.Kwasia.JPG"
+    },
+    "Park Maćka i Doroty": {
+        "ilosc drzew": 2184,
+        "co2_absorpcja": 111000,
+        "link": "https://zzm.krakow.pl/images/jDJI_0002_1.jpg"
+    },
+    "Park Młynówka Królewska": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park pil. gen. S. Skalskiego": {
+        "ilosc drzew": 234,
+        "co2_absorpcja": 5000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/skalskiego/DJI_0096.jpg"
+    },
+    "Park Ratuszowy": {
+        "ilosc drzew": 283,
+        "co2_absorpcja": 18000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/ratuszowy/DJI_0014.jpg"
+    },
+    "Park Solvay": {
+        "ilosc drzew": 3583,
+        "co2_absorpcja": 151000,
+        "link": "https://zzm.krakow.pl/images/1DJI_0002.jpg"
+    },
+    "Park Strzelecki": {
+        "ilosc drzew": 217,
+        "co2_absorpcja": 5000,
+        "link": "https://zzm.krakow.pl/images/DJI_0009.jpg"
+    },
+    "Park Szwedzki": {
+        "ilosc drzew": 284,
+        "co2_absorpcja": 14000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/szwedzki/Monitor/DJI_0005.jpg"
+    },
+    "Park św. Wincentego a'Paulo": {
+        "ilosc drzew": 271,
+        "co2_absorpcja": 12000,
+        "link": "https://zzm.krakow.pl/images/DJI_0112.jpg"
+    },
+    "Park Tysiąclecia": {
+        "ilosc drzew": 2422,
+        "co2_absorpcja": 70000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/teatralny/tysiaclecia/Internet/DJI_0057.jpg"
+    },
+    "Park Wadów": {
+        "ilosc drzew": 291,
+        "co2_absorpcja": 12000,
+        "link": "https://zzm.krakow.pl/images/pliki/galeria/Wadow/52893211_2165420507105505_7928449786636664832_o.jpg"
+    },
+    "Park Wiśniowy Sad": {
+        "ilosc drzew": 176,
+        "co2_absorpcja": 12000,
+        "link": "https://media.krakow.travel/photos/36239/xxl.jpg"
+    },
+    "Park Zalew Nowohucki": {
+        "ilosc drzew": 1206,
+        "co2_absorpcja": 78000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/zalewNowohucki/Zalew.jpg"
+    },
+    "Park Zielony Jar Wandy": {
+        "ilosc drzew": 322,
+        "co2_absorpcja": 23000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/jarWandy/DJI_0004.jpg"
+    },
+    "Planty Bieńczyckie": {
+        "ilosc drzew": 1730,
+        "co2_absorpcja": 99000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/PlantyBienczyckie/1.jpg"
+    },
+    "Planty Floriana Nowackiego": {
+        "ilosc drzew": 328,
+        "co2_absorpcja": 16000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/plantynowackiego/jpg/DJI_0084.jpg"
+    },
+    "Planty Krakowskie": {
+        "ilosc drzew": 2444,
+        "co2_absorpcja": 112000,
+        "link": "https://zzm.krakow.pl/images/DJI_0049.jpg"
+    },
+    "Planty Mistrzejowickie": {
+        "ilosc drzew": 900,
+        "co2_absorpcja": 30000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/plantyMistrzejowickie/jpg/DJI_0140.jpg"
+    },
+    "Park Dębnicki": {
+        "ilosc drzew": 1707,
+        "co2_absorpcja": 103,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/debnicki/DJI_0034.jpg"
+    },
+    "Park Rżąka": {
+        "ilosc drzew": 277,
+        "co2_absorpcja": 11000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/rzaka/4.jpg"
+    },
+    "Park Zaczarowanej Dorożki": {
+        "ilosc drzew": 111,
+        "co2_absorpcja": 6000,
+        "link": "https://zzm.krakow.pl/images/DJI_0017.jpg"
+    },
+    "Park linearny Ruczaj": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Ogród Łobzów": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Stacja Wisła": {
+        "ilosc drzew": 148,
+        "co2_absorpcja": 9000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/stacjawisla/DJI_0039.jpg"
+    },
+    "Park Czyżyny": {
+        "ilosc drzew": 317,
+        "co2_absorpcja": 4000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/Czyzyny/2.jpg"
+    },
+    "Park Duchacki": {
+        "ilosc drzew": 97,
+        "co2_absorpcja": 5000,
+        "link": "https://zzm.krakow.pl/images/pliki/galeria/park_duchacki/P_Duchacki_6.JPG"
+    },
+    "Park Grzegórzecki": {
+        "ilosc drzew": 2671,
+        "co2_absorpcja": 141000,
+        "link": "https://pliki.propertydesign.pl/i/14/42/59/144259_r0_1140.jpg"
+    },
+    "Park im. Wisławy Szymborskiej": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Jana Matejki": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Łagiewnicki": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Miejski Bagry Wielkie": {
+        "ilosc drzew": 1660,
+        "co2_absorpcja": 60000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/bagry/DJI_0019-Edit.jpg"
+    },
+    "Park Ogród nad Sudołem": {
+        "ilosc drzew": 269,
+        "co2_absorpcja": 14000,
+        "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Ogr%C3%B3dNadSudo%C5%82em-Og%C3%B3lnyWidokNaWsch%C3%B3d-Pr%C4%85dnikCzerwony-POL%2C_Krak%C3%B3w.jpg/1024px-Ogr%C3%B3dNadSudo%C5%82em-Og%C3%B3lnyWidokNaWsch%C3%B3d-Pr%C4%85dnikCzerwony-POL%2C_Krak%C3%B3w.jpg"
+    },
+    "Park przy Dworze Czeczów": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park przy Forcie Borek": {
+        "ilosc drzew": 1545,
+        "co2_absorpcja": 38000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/FORT%20BOREK/FORT2.jpg"
+    },
+    "Park przy Forcie Bronowice": {
+        "ilosc drzew": 291,
+        "co2_absorpcja": 8000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/bronowice3.jpg"
+    },
+    "Park przy ul. Radzikowskiego": {
+        "ilosc drzew": 451,
+        "co2_absorpcja": 28000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/Radzikowskiego%203.jpg"
+    },
+    "Park Przylasek Rusiecki": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Przylasek Wyciąski": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Pychowicki": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Reduta": {
+        "ilosc drzew": 461,
+        "co2_absorpcja": 23000,
+        "link": "https://zzm.krakow.pl/images/pliki/aktualnosci/PARKI_2020/REDUTA/DSCN6204%20(2).JPG"
+    },
+    "Park Rzeczny Białucha": {
+        "ilosc drzew": 452,
+        "co2_absorpcja": 38000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/Bialucha%204.jpg"
+    },
+    "Park Rzeczny Drwinka": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Rzeczny Ogród Płaszów": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Rzeczny Wilga": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Staw Płaszowski": {
+        "ilosc drzew": 594,
+        "co2_absorpcja": 1000,
+        "link": "https://zzm.krakow.pl/images/Zdjecia/Staw%20Plaszowski%204.jpg"
+    },
+    "Park Zakrzówek": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Woźniców (część)": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Rzeczny Rudawa": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Złocień": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Rzeczny im. W. Tetmajera": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Węgrzynowice": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    },
+    "Park Kolejowy (I etap)": {
+        "ilosc drzew": null,
+        "co2_absorpcja": null,
+        "link": null
+    }
 }
