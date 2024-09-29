@@ -1,9 +1,5 @@
-import os
 import json
-import pandas as pd
 import numpy as np
-import pdfplumber
-import re
 import random
 import trees_data
 
@@ -53,9 +49,9 @@ def get_random_key(data):
     return random.choice(list(data.keys()))
 
 def parks_absorption(co2_amount: float):
-    # parki_pdf_file_path = "./green_data/Parki.pdf"
-    # parki_data = trees_data.read_pdf_data(parki_pdf_file_path)
-    # parki_df = trees_data.create_parki_df(parki_data)
+    parki_pdf_file_path = "./green_data/Parki.pdf"
+    parki_data = trees_data.read_pdf_data(parki_pdf_file_path)
+    parki_df = trees_data.create_parki_df(parki_data)
 
     parki_absorption_file_path = "./green_data/parks_absorption.json"
     parki_absorption_data = load_config(parki_absorption_file_path)
@@ -64,38 +60,39 @@ def parks_absorption(co2_amount: float):
     random_park_name = get_random_key(filtered_data)  # Losowy klucz
     random_park_data = filtered_data[random_park_name]
 
-    # print(f'random_park_data: {random_park_data}')
     number_of_trees = random_park_data['ilosc drzew']
     yearly_co2_absorption = random_park_data['co2_absorpcja']
     monthly_co2_absrption = yearly_co2_absorption/12
 
-    percentage_of_park = np.round((co2_amount / monthly_co2_absrption) * 100, 2)
-
+    filtered_park = parki_df[parki_df['NAZWA PARKU'] == random_park_name]
+    # Oblicz procent parku potrzebny do zniwelowania CO2
+    percentage_of_park = float(np.round((co2_amount / monthly_co2_absrption) * 100, 2))
     # Oblicz liczbę drzew potrzebnych do zniwelowania CO2
     trees_needed = int((co2_amount / (monthly_co2_absrption / number_of_trees)))
 
-    # print(f'potrzzba zniwelować: {co2_amount}')
 
-    # print(f'{random_park_name}, potrzeba {percentage_of_park}% parku to jest {trees_needed} drzew')
+    return_data = {'nazwa_parku': random_park_name,
+                   'procent_powierzchni': percentage_of_park,
+                   'potrzebne_drzewa': trees_needed,
+                   'pelna_powierzchnia': None,
+                   'powierznia_potrzebna': None
+                   }
 
-    return random_park_name, percentage_of_park, trees_needed
+    # Sprawdź, czy park istnieje w pliku pdf
+    if not filtered_park.empty:
+        park_full_area = float(filtered_park['POW (ha)'].values[0].replace(',', '.'))
+        park_needed_area = float(np.round((percentage_of_park/100) * park_full_area, 2))
+        return_data['pelna_powierzchnia'] = park_full_area
+        return_data['powierznia_potrzebna'] = park_needed_area
+    else:
+        return_data['pelna_powierzchnia'] = 'Brak danych'
+        return_data['powierznia_potrzebna'] = 'Brak danych'
+
+    return return_data
 
 
 def main():
-#     Kraków
-#     ": {
-#     "ilosc drzew": 101159,
-#     "co2_absorpcja": 6423000
-#
-# }
-    print(old_tree(30, 300))
-    print(middle_tree(1, 300))
-    print(young_tree(100, 300))
-
-    parks_absorption(300)
-    parks_absorption(10)
-    parks_absorption(300000)
-
+    pass
 
 
 if __name__ == '__main__':
