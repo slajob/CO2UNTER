@@ -63,6 +63,7 @@ def parks_absorption(co2_amount: float):
     number_of_trees = random_park_data['ilosc drzew']
     yearly_co2_absorption = random_park_data['co2_absorpcja']
     monthly_co2_absrption = yearly_co2_absorption/12
+    link = random_park_data['link']
 
     filtered_park = parki_df[parki_df['NAZWA PARKU'] == random_park_name]
     # Oblicz procent parku potrzebny do zniwelowania CO2
@@ -75,7 +76,8 @@ def parks_absorption(co2_amount: float):
                    'procent_powierzchni': percentage_of_park,
                    'potrzebne_drzewa': trees_needed,
                    'pelna_powierzchnia': None,
-                   'powierznia_potrzebna': None
+                   'powierznia_potrzebna': None,
+                   'link': link
                    }
 
     # Sprawdź, czy park istnieje w pliku pdf

@@ -48,6 +48,7 @@ def home(request):
 
     parks_general_absorption = parks_absorption(total_co2_month)
 
+    link = parks_absorption
 
     # Historical Data for the chart
     historical_data = CO2ConsumptionHistory.objects.filter(user=current_user).order_by('timestamp')

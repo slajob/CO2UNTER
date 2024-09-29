@@ -1,90 +1,80 @@
 {% extends 'counter/base.html' %}
 {% block content %}
 <section class="hero is-primary">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title is-size-3 has-text-weight-bold">Witaj w aplikacji CO2UNTER</h1>
-      <p class="subtitle">Zacznij śledzić swój ślad węglowy już dziś!</p>
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title is-size-3 has-text-weight-bold">Witaj w aplikacji CO2UNTER</h1>
+            <p class="subtitle">Zacznij śledzić swój ślad węglowy już dziś!</p>
+        </div>
     </div>
-  </div>
 </section>
-
 <div class="container mt-5">
-  {% if total_co2_month is not None %}
-  <div class="card mb-5">
-    <header class="card-header">
-      <p class="card-header-title">
-        Sumaryczna emisja CO2 w bieżącym miesiącu
-      </p>
-    </header>
-    <div class="card-content">
-      <div class="content">
-        <p class="is-size-5">Emisja CO2: <strong>{{ total_co2_month }} kg CO2</strong></p>
-        <p class="is-size-5">100 letnie drzewo pochłonie: <strong>{{ old_tree_general_absorb }} kg CO2</strong></p>
-        <p class="is-size-5">Wymagane drzewa średniej wielkości: <strong>{{ middle_tree_general_absort }}</strong></p>
-        <p class="is-size-5">Wymagane sadzonki: <strong>{{ young_tree_general_absorb }}</strong></p>
-        <p class="is-size-5">
-          Park <strong>{{ parks_general_absorption.nazwa_parku }}</strong>
-          o powierzchni <strong>{{ parks_general_absorption.pelna_powierzchnia }} ha</strong>
-          potrzebuje <strong>{{ parks_general_absorption.procent_powierzchni }}%</strong> swojego obszaru,
-          aby wchłonąć twoją miesięczną produkcję CO2.
-          To odpowiada <strong>{{ parks_general_absorption.potrzebne_drzewa }} drzewom</strong>.
-        </p>
-      </div>
-    </div>
-  </div>
-  {% else %}
-  <div class="notification is-warning">
-    Nie ma danych do wyświetlenia dla bieżącego miesiąca.
-  </div>
-  {% endif %}
+    {% if total_co2_month is not None %}
+        <div class="card mb-5">
+            <header class="card-header">
+                <p class="card-header-title"> Sumaryczna emisja CO2 w bieżącym miesiącu </p>
+            </header>
+            <div class="card-content">
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <p class="is-size-5">Emisja CO2: <strong>{{ total_co2_month }} kg CO2</strong></p>
+                        <p class="is-size-5">100 letnie drzewo pochłonie: <strong>{{ old_tree_general_absorb }} kg CO2</strong></p>
+                        <p class="is-size-5">Wymagane drzewa średniej wielkości: <strong>{{ middle_tree_general_absort }}</strong></p>
+                        <p class="is-size-5">Wymagane sadzonki: <strong>{{ young_tree_general_absorb }}</strong></p>
+                        <p class="is-size-5"> Park <strong>{{ parks_general_absorption.nazwa_parku }}</strong> o powierzchni <strong>{{ parks_general_absorption.pelna_powierzchnia }} ha</strong> potrzebuje <strong>{{ parks_general_absorption.procent_powierzchni }}%</strong> swojego obszaru, aby wchłonąć twoją miesięczną produkcję CO2. To odpowiada <strong>{{ parks_general_absorption.potrzebne_drzewa }} drzewom</strong>. </p>
+                    </div>
+                    <div class="column is-one-third">
+                        <img src="{{ parks_general_absorption.link }}" alt="Image description" class="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="notification is-warning"> Nie ma danych do wyświetlenia dla bieżącego miesiąca. </div>
+    {% endif %}
+</div>
+    {% if total_co2_year is not None %}
+        <div class="card mb-5">
+            <header class="card-header">
+                <p class="card-header-title"> Sumaryczna emisja CO2 w bieżącym roku </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    <p class="is-size-5">Emisja CO2: <strong>{{ total_co2_year }} kg CO2</strong></p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="notification is-warning"> Nie ma danych do wyświetlenia dla bieżącego roku. </div>
+    {% endif %}
 
-  {% if total_co2_year is not None %}
-  <div class="card mb-5">
-    <header class="card-header">
-      <p class="card-header-title">
-        Sumaryczna emisja CO2 w bieżącym roku
-      </p>
-    </header>
-    <div class="card-content">
-      <div class="content">
-        <p class="is-size-5">Emisja CO2: <strong>{{ total_co2_year }} kg CO2</strong></p>
-      </div>
+    <!-- Chart Container -->
+    <div class="box mb-5">
+        <canvas id="co2Chart" width="400" height="200"></canvas>
     </div>
-  </div>
-  {% else %}
-  <div class="notification is-warning">
-    Nie ma danych do wyświetlenia dla bieżącego roku.
-  </div>
-  {% endif %}
-
-  <!-- Chart Container -->
-  <div class="box mb-5">
-    <canvas id="co2Chart" width="400" height="200"></canvas>
-  </div>
 </div>
 
 <script>
-  var ctx = document.getElementById('co2Chart').getContext('2d');
-  var co2Chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: {{ labels|safe }},
-      datasets: [{
-        label: 'Emisja CO2 (kg)',
-        data: {{ data|safe }},
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+    var ctx = document.getElementById('co2Chart').getContext('2d');
+    var co2Chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ labels|safe }},
+            datasets: [{
+                label: 'Emisja CO2 (kg)',
+                data: {{ data|safe }},
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
-      }
-    }
-  });
+    });
 </script>
 {% endblock %}
