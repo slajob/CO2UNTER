@@ -2,9 +2,6 @@
 
 ECO2COUNTER to aplikacja stworzona w ramach hackathonu HackYeah 2024. Jej celem jest pomoc użytkownikom w obliczaniu ich śladu węglowego na podstawie codziennych czynności. Ważnym elementem projektu był szczegółowy research dotyczący emisji generowanych przez różne aktywności oraz analiza miejsc zielonych w Krakowie, ich powierzchnia oraz zdolność pochłaniania dwutlenku węgla.
 
-## Demo
-
-Zdeployowaną wersję aplikacji można znaleźć pod adresem: [https://eco2counter.slajob.dev/](https://eco2counter.slajob.dev/)
 
 ## Opis
 
